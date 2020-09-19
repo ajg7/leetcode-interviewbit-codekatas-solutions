@@ -28,6 +28,4 @@ const isSquare = num => {
     return false
   }
 }
-
-isSquare(36);
 ```
