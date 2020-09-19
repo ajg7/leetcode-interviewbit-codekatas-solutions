@@ -21,8 +21,8 @@ var uniqueInOrder=function(iterable){
 ## A Square of Squares
 ```javascript
 const isSquare = num => {
-  const numTest = Math.sqrt(num)
-  if(numTest % 2 === 0 || numTest % 2 === 1 && num >= 0) {
+  const rootNum = Math.sqrt(num)
+  if(rootNum % 2 === 0 || rootNum % 2 === 1 && num >= 0) {
     return true
   } else {
     return false
