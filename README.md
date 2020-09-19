@@ -17,3 +17,17 @@ var uniqueInOrder=function(iterable){
   return result
 }
 ```
+
+## A Square of Squares
+```javascript
+const isSquare = num => {
+  const numTest = Math.sqrt(num)
+  if(numTest % 2 === 0 || numTest % 2 === 1 && num >= 0) {
+    return true
+  } else {
+    return false
+  }
+}
+
+isSquare(36);
+```
