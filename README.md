@@ -29,3 +29,20 @@ const isSquare = num => {
   }
 }
 ```
+
+## Training on Dubstep
+```javascript
+const songDecoder = dubStepSong => {
+    const splitArray = dubStepSong.split("WUB");
+    const filteredArray = splitArray.filter(character => {
+      if(character !== "") {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    return filteredArray.join(" ")
+}
+
+console.log(songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB"));
+```
