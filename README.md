@@ -46,3 +46,16 @@ const songDecoder = dubStepSong => {
 
 console.log(songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB"));
 ```
+
+## Create Phone Number
+```javascript
+const createPhoneNumber = nums => {
+  const phoneNumber = []
+    phoneNumber.push(`(${nums[0]}${nums[1]}${nums[2]}) ${nums[3]}${nums[4]}${nums[5]}-${nums[6]}${nums[7]}${nums[8]}${nums[9]}`)
+  return phoneNumber.join("")
+}
+
+
+
+console.log(createPhoneNumber([6,6,0,8,6,4,4,6,7,8]))
+```
