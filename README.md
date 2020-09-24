@@ -49,10 +49,12 @@ console.log(songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB"));
 
 ## Create Phone Number
 ```javascript
-  const createPhoneNumber = nums => {
+const createPhoneNumber = nums => {
   const phoneNumber = []
-  phoneNumber.push(`(${nums[0]}${nums[1]}${nums[2]}) ${nums[3]}${nums[4]}${nums[5]}-${nums[6]}${nums[7]}${nums[8]}${nums[9]}`)
-  return phoneNumber.join("")
+  const sectionOne = ["(", nums[0], nums[1], nums[2], ")"]
+  const sectionTwo = [" ", nums[3], nums[4], nums[5], "-"]
+  const sectionThree = [nums[6], nums[7], nums[8], nums[9]]
+  return [...sectionOne, ...sectionTwo, ...sectionThree].join("")
 }
 
 
