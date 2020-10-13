@@ -63,4 +63,29 @@ console.log(createPhoneNumber([6,6,0,8,6,4,4,6,7,8]))
 ```
 ## Training on Roman Numerals
 ```javascript
+const solution = (romanNum) => {
+  const numerals = {
+      M: 1000,
+      D: 500,
+      C: 100,
+      L: 50,
+      X: 10,
+      V: 5,
+      I: 1
+    };
+  const numbers = romanNum.split("");
+  let solution = 0;
+  let precedingNumeral;
+  for (const ele of numbers) {
+    if(precedingNumeral < numerals[ele]) {
+        solution += numerals[ele] - 2
+    } else {
+      solution += numerals[ele]
+    }
+    precedingNumeral = numerals[ele]
+  }
+  return solution
+}
+
+solution("IX")
 ```
