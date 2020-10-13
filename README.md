@@ -112,7 +112,7 @@ const toCamelCase = str => {
 	return result.join("")
 }
 
-console.log(toCamelCase("dark_one_present"))
+console.log(toCamelCase("the_camel_and_the_snake"))
 ```
 ### Convert Camel Case to Snake Case
 - This is my own original challenge
@@ -130,6 +130,6 @@ const toSnakeCase = str => {
 	return result.join("")
 }
 
-console.log(toSnakeCase("oneDarkMan"))
+console.log(toSnakeCase("theCamelAndTheSnake"))
 ```
 
