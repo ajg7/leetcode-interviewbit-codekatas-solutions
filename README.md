@@ -92,4 +92,44 @@ solution("IX")
 
 ## Convert String to Camel Case
 ```javascript
+const toCamelCase = str => {
+  const splitStr = str.split("");
+	const result = [];
+	let underscorePresent = false;
+	for(const ele of splitStr) {
+		if(ele === "_" || ele === "-") {
+			result.unshift()
+			underscorePresent = true;
+		} else {
+			if(underscorePresent) {
+				result.push(ele.toUpperCase())
+				underscorePresent = false;
+			} else {
+				result.push(ele)
+			}
+		}
+	}
+	return result.join("")
+}
+
+console.log(toCamelCase("dark_one_present"))
 ```
+### Convert Camel Case to Snake Case
+- This is my own original challenge
+```javascript
+const toSnakeCase = str => {
+  const splitStr = str.split("");
+	const result = [];
+	for(const ele of splitStr) {
+		if(ele === ele.toUpperCase()) {
+			result.push("_", ele.toLowerCase())
+		} else {
+			result.push(ele)
+		}
+	}
+	return result.join("")
+}
+
+console.log(toSnakeCase("oneDarkMan"))
+```
+
