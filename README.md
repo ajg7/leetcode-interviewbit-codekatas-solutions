@@ -89,3 +89,7 @@ const solution = (romanNum) => {
 
 solution("IX")
 ```
+
+## Convert String to Camel Case
+```javascript
+```
