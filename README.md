@@ -94,22 +94,22 @@ solution("IX")
 ```javascript
 const toCamelCase = str => {
   const splitStr = str.split("");
-	const result = [];
-	let underscorePresent = false;
-	for(const ele of splitStr) {
-		if(ele === "_" || ele === "-") {
-			result.unshift()
-			underscorePresent = true;
+  const result = [];
+  let underscorePresent = false;
+  	for(const ele of splitStr) {
+	    if(ele === "_" || ele === "-") {
+		result.unshift()
+		underscorePresent = true;
+	    } else {
+		if(underscorePresent) {
+		    result.push(ele.toUpperCase())
+		    underscorePresent = false;
 		} else {
-			if(underscorePresent) {
-				result.push(ele.toUpperCase())
-				underscorePresent = false;
-			} else {
-				result.push(ele)
-			}
-		}
-	}
-	return result.join("")
+		    result.push(ele)
+		  }
+	      }
+	    }
+   return result.join("")
 }
 
 console.log(toCamelCase("the_camel_and_the_snake"))
@@ -119,15 +119,15 @@ console.log(toCamelCase("the_camel_and_the_snake"))
 ```javascript
 const toSnakeCase = str => {
   const splitStr = str.split("");
-	const result = [];
-	for(const ele of splitStr) {
-		if(ele === ele.toUpperCase()) {
-			result.push("_", ele.toLowerCase())
-		} else {
-			result.push(ele)
-		}
-	}
-	return result.join("")
+  const result = [];
+  for(const ele of splitStr) {
+      if(ele === ele.toUpperCase()) {
+         result.push("_", ele.toLowerCase())
+      } else {
+	result.push(ele)
+        }
+      }
+   return result.join("")
 }
 
 console.log(toSnakeCase("theCamelAndTheSnake"))
