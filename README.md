@@ -1,5 +1,9 @@
-# code_katas
-My solutions for code katas on codewars.com
+My solutions for code katas on leetcode.com & codewars.com
+
+# Leetcode
+
+
+# Code Katas
 
 ## Unique In Order
 ```javascript
