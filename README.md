@@ -2,6 +2,20 @@ My solutions for code katas on leetcode.com & codewars.com
 
 # Leetcode
 
+## Duplicate Zeros
+```javascript
+const duplicateZeros = arr => {
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (!arr[i]) {
+            arr.splice(i, 0, 0);
+            i++
+            arr.pop();
+        }  
+    }
+    return result;
+};
+```
 
 # Code Katas
 
