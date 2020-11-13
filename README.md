@@ -1,4 +1,4 @@
-My solutions for code katas on leetcode.com & codewars.com
+My solutions for leetcode & codekatas
 
 # Leetcode
 
