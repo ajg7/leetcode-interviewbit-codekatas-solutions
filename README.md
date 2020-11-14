@@ -4,6 +4,19 @@ My solutions for leetcode & codekatas
 
 ## Remove Element
 ```javascript
+// Pointer Solution
+const removeElement = (nums, val) => {
+    let pointer = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== val) {
+            nums[pointer] = nums[i]
+            pointer++
+        }
+    }
+    return pointer
+};
+
+// Splice Solution
 const removeElement = (nums, val) => {
     for (let i = nums.length - 1; i >= 0; i--) {
         if (nums[i] === val) nums.splice(i, 1);
