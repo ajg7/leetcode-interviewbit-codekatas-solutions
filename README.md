@@ -2,6 +2,23 @@ My solutions for leetcode & codekatas
 
 # Leetcode
 
+## 206. Reverse a Linked List
+```javascript
+const reverseList = head => {
+    let curr = head;
+    let prev = null;
+    let nextTemp = null;
+    
+    while (curr) {
+        nextTemp = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = nextTemp;
+    }
+    return prev
+};
+```
+
 ## 237. Delete Node in a Linked List
 ```javascript
 const deleteNode = node => {
