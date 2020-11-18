@@ -2,6 +2,18 @@ My solutions for leetcode & codekatas
 
 # Leetcode
 
+## Convert Binary Number in a Linked List to Integer
+```javascript
+const getDecimalValue = head => {
+    const result = [];
+    while (head) {
+        result.push(String(head.val));
+        head = head.next
+    }
+    return parseInt(result.join(""), 2)
+};
+```
+
 ## Remove Element
 ```javascript
 // Pointer Solution
