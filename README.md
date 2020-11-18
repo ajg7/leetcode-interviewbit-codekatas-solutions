@@ -2,6 +2,20 @@ My solutions for leetcode & codekatas
 
 # Leetcode
 
+## 876. Middle of the Linked List
+```javascript
+const middleNode = head => {
+    let fast = head;
+    let slow = head;
+    
+    while (fast && fast.next) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    return slow
+};
+```
+
 ## Convert Binary Number in a Linked List to Integer
 ```javascript
 const getDecimalValue = head => {
