@@ -2,6 +2,14 @@ My solutions for leetcode & codekatas
 
 # Leetcode
 
+## 237. Delete Node in a Linked List
+```javascript
+const deleteNode = node => {
+    node.val = node.next.val;
+    node.next = node.next.next;
+};
+```
+
 ## 876. Middle of the Linked List
 ```javascript
 const middleNode = head => {
