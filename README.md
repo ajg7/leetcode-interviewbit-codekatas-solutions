@@ -2,7 +2,9 @@ My solutions for leetcode & codekatas
 
 # Leetcode
 
-## 206. Reverse a Linked List
+## Linked Lists
+
+### 206. Reverse a Linked List
 ```javascript
 const reverseList = head => {
     let curr = head;
@@ -19,7 +21,7 @@ const reverseList = head => {
 };
 ```
 
-## 237. Delete Node in a Linked List
+### 237. Delete Node in a Linked List
 ```javascript
 const deleteNode = node => {
     node.val = node.next.val;
@@ -27,7 +29,7 @@ const deleteNode = node => {
 };
 ```
 
-## 876. Middle of the Linked List
+### 876. Middle of the Linked List
 ```javascript
 const middleNode = head => {
     let fast = head;
@@ -41,7 +43,7 @@ const middleNode = head => {
 };
 ```
 
-## Convert Binary Number in a Linked List to Integer
+### Convert Binary Number in a Linked List to Integer
 ```javascript
 const getDecimalValue = head => {
     const result = [];
@@ -53,7 +55,9 @@ const getDecimalValue = head => {
 };
 ```
 
-## Remove Element
+## Arrays
+
+### Remove Element
 ```javascript
 // Pointer Solution
 const removeElement = (nums, val) => {
@@ -76,7 +80,7 @@ const removeElement = (nums, val) => {
 };
 ```
 
-## Merge Sorted Array
+### Merge Sorted Array
 ```javascript
 const merge = (nums1, m, nums2, n) => {
     let first = m - 1;
@@ -95,7 +99,7 @@ const merge = (nums1, m, nums2, n) => {
 };
 ```
 
-## Duplicate Zeros
+### Duplicate Zeros
 ```javascript
 const duplicateZeros = arr => {
     for (let i = 0; i < arr.length; i++) {
@@ -107,6 +111,7 @@ const duplicateZeros = arr => {
     }
 };
 ```
+
 
 # Code Katas
 
