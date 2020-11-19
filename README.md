@@ -4,7 +4,7 @@ My solutions for leetcode & codekatas
 
 ## Trees
 
-### Merge Two Binary Trees
+### 617. Merge Two Binary Trees
 ```javascript
 const mergeTrees = (t1, t2) => {
     if (!t1 || !t2) return t1 || t2;
