@@ -137,6 +137,21 @@ const getDecimalValue = head => {
 };
 ```
 
+## Binary Search
+
+### 1351. Count Negative Numbers in a Sorted Matrix
+```javascript
+const countNegatives = grid => {
+    let count = 0;
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            if (Math.sign(grid[i][j]) === -1) count++;
+        }
+    } 
+    return count
+};
+```
+
 ## Arrays
 
 ### Remove Element
