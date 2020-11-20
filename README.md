@@ -2,7 +2,24 @@ My solutions for leetcode & codekatas
 
 # Leetcode
 
+## Graphs
+
+### 997. Find the Town Judge
+```javascript
+
+```
+
 ## Trees
+
+### 700. Search in a Binary Search Tree
+```javascript
+const searchBST = (root, val) => {
+    if (!root) return null;
+    if (root.val === val) return root;
+    if (root.val > val) return searchBST(root.left, val);
+    if (root.val < val) return searchBST(root.right, val);
+};
+```
 
 ### 617. Merge Two Binary Trees
 ```javascript
