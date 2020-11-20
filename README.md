@@ -29,6 +29,30 @@ const findJudge = (N, trust) => {
 
 ## Trees
 
+### 111. Minimum Depth of Binary Tree (BFS)
+```javascript
+const minDepth = root => { 
+    if (!root) return 0;
+    if (!root.left) return minDepth(root.right) + 1;
+    if (!root.right) return minDepth(root.left) + 1;
+    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+};
+```
+
+### 104. Maximum Depth of Binary Tree (DFS)
+```javascript
+const maxDepth = root => {
+    const checkDepth = (node, depth) => {
+        if (node === null) return depth;
+        depth++;
+        const leftSide = checkDepth(node.left, depth);
+        const rightSide = checkDepth(node.right, depth);
+        return Math.max(leftSide, rightSide);
+    }
+    return checkDepth(root, 0)
+};
+```
+
 ### 700. Search in a Binary Search Tree
 ```javascript
 const searchBST = (root, val) => {
