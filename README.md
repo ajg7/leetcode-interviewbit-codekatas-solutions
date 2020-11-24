@@ -86,6 +86,26 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 203. Remove Linked List Elements
+```javascript
+ const removeElements = (head, val) => {
+    const dummy = new ListNode(NaN)
+    dummy.next = head
+    
+    let current = dummy
+    while (current && current.next) {
+        const next = current.next
+        if (next.val === val) {
+            current.next = current.next.next
+        } else {
+            current = current.next
+        }
+    }
+    
+    return dummy.next
+};
+```
+
 ### 206. Reverse a Linked List
 ```javascript
 const reverseList = head => {
