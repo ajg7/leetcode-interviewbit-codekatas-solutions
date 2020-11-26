@@ -86,6 +86,22 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 83. Remove Duplicates from Sorted List
+```javascript
+const deleteDuplicates = head => {
+    if (!head) return null;
+    let current = head;
+    while (current && current.next) {
+        if (current.val === current.next.val) {
+            current.next = current.next.next;
+        } else {
+            current = current.next
+        }
+    }
+    return head
+};
+```
+
 ### 203. Remove Linked List Elements
 ```javascript
  const removeElements = (head, val) => {
