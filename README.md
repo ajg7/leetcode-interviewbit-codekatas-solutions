@@ -86,6 +86,25 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 160. Intersection of Two Linked Lists
+```javascript
+const getIntersectionNode = (headA, headB) => {
+    if (!headA || !headB) return null;
+    let pointerA = headA;
+    let pointerB = headB;
+    
+    while (pointerA && pointerB && pointerA !== pointerB) {
+        pointerA = pointerA.next;
+        pointerB = pointerB.next;
+        
+        if (pointerA === pointerB) return pointerA;
+        if (!pointerA) pointerA = headA;
+        if (!pointerB) pointerB = headB;
+    }
+    return pointerA;
+};
+```
+
 ### 142. Linked List Cycle II
 ```javascript
 const detectCycle = head => {
