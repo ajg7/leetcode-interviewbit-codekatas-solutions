@@ -86,6 +86,79 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 234. Palindrome Linked List
+```javascript
+// Stack Solution
+
+const isPalindrome = head => {
+    const stack = []
+    
+    let curr = head
+    while (curr) {
+        stack.push(curr.val)
+        curr = curr.next
+    }
+    
+    while (head) {
+        const top = stack.pop()
+        if (head.val !== top) 
+            return false
+        
+        head = head.next
+    }
+    
+    return true
+};
+
+// Reverse Linked List Solution
+
+const isPalindrome = head => {
+    if (!head) return true
+    const copyHead = copy(head)
+    const reversedHead = reverse(copyHead)
+    return isEqual(head, reversedHead)
+};
+
+const isEqual = (l1, l2) => {
+    while (l1 && l2) {
+        if (l1.val !== l2.val) {
+            return false
+        }
+        
+        l1 = l1.next
+        l2 = l2.next
+    }
+    
+    return !l1 && !l2
+}
+
+const reverse = head => {
+    let prev = null
+    let next = null
+    while (head) {
+        next = head.next
+        head.next = prev
+        prev = head
+        head = next
+    }
+    return prev
+}
+
+const copy = head => {
+    const copyHead = new ListNode(head.val)
+    let copyCurr = copyHead
+    head = head.next
+    
+    while (head) {
+        copyCurr.next = new ListNode(head.val)
+        copyCurr = copyCurr.next
+        head = head.next
+    }
+    
+    return copyHead
+}
+```
+
 ### 83. Remove Duplicates from Sorted List
 ```javascript
 const deleteDuplicates = head => {
