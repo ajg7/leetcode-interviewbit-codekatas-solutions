@@ -86,6 +86,22 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 141. Linked List Cycle
+```javascript
+const hasCycle = head => {
+    let slow = head;
+    let fast = head;
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        console.log(head.val)
+        if (slow === fast) return true
+    }
+    return false
+    
+};
+```
+
 ### 21. Merge Two Sorted Lists
 ```javascript
 const mergeTwoLists = (l1, l2) => {
