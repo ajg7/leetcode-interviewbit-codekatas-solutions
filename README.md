@@ -86,6 +86,29 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 142. Linked List Cycle II
+```javascript
+const detectCycle = head => {
+    //hare is the fast pointer and tortoise is the slow pointer
+    //Floyd's Algorithm
+    let hare = head;
+    let tortoise = head;
+    while (hare && hare.next) {
+        tortoise = tortoise.next;
+        hare = hare.next.next;
+        if (hare === tortoise) {
+            tortoise = head;
+            while (tortoise !== hare) {
+                tortoise = tortoise.next;
+                hare = hare.next;
+            }
+            return hare;
+        }
+    }
+    return null
+};
+```
+
 ### 141. Linked List Cycle
 ```javascript
 const hasCycle = head => {
