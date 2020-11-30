@@ -86,6 +86,30 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 19. Remove the nth Node from End of the List
+```javascript
+const removeNthFromEnd = (head, n) => {
+    let fast = head;
+    let slow = head;
+    while (n > 0){
+        n--;
+        fast = fast.next;
+    }
+    let prev = null;
+    while (fast != null){
+        fast = fast.next;
+        prev = slow;
+        slow = slow.next;
+    }
+    if (prev == null){
+        return head.next;
+    }
+    prev.next = slow.next;
+    slow.next = null;
+    return head;
+};
+```
+
 ### 160. Intersection of Two Linked Lists
 ```javascript
 const getIntersectionNode = (headA, headB) => {
