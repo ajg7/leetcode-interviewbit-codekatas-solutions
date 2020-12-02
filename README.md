@@ -86,6 +86,36 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 328. Odd Even Linked List
+```javascript
+const oddEvenList = head => {
+    if (!head) return null
+    
+    let oddList = new ListNode(-1);
+    let evenList = new ListNode(-1);
+    let oddStart = oddList;
+    let evenStart = evenList;
+    let placeValue = 1;
+    let current = head;
+    while (current) {
+        if (placeValue % 2 === 1) {
+            oddList.next = current;
+            oddList = oddList.next
+        } else {
+            evenList.next = current;
+            evenList = evenList.next;
+        }
+        placeValue++;
+        current = current.next;
+    }
+    
+    oddList.next = evenStart.next;
+    evenList.next = null;
+    
+    return oddStart.next;
+};
+```
+
 ### 19. Remove the nth Node from End of the List
 ```javascript
 const removeNthFromEnd = (head, n) => {
