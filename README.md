@@ -458,7 +458,18 @@ const duplicateZeros = arr => {
     }
 };
 ```
+# InterviewBit
 
+## SQL
+
+### Neutral Reviewers
+```sql
+SELECT r.reviewer_name
+FROM reviewers as r
+JOIN ratings as ra
+ON r.reviewer_id = ra.reviewer_id
+WHERE ra.reviewer_stars IS NULL;
+```
 
 # Code Katas
 
