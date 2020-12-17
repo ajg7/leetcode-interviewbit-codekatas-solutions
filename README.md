@@ -471,6 +471,19 @@ ON r.reviewer_id = ra.reviewer_id
 WHERE ra.reviewer_stars IS NULL;
 ```
 
+### Movie Character
+```sql
+SELECT CONCAT(d.director_first_name, d.director_last_name) AS director_name, m.movie_title
+FROM movies AS m
+JOIN movies_directors AS md
+ON md.movie_id = m.movie_id
+JOIN directors AS d
+ON d.director_id = md.director_id
+JOIN movies_cast AS mc
+ON m.movie_id = mc.movie_id
+WHERE mc.role = 'SeanMaguire'
+```
+
 # Code Katas
 
 ## Unique In Order
