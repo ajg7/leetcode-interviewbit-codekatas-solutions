@@ -1,4 +1,4 @@
-My solutions for leetcode & codekatas
+My solutions for leetcode, interviewbit & codekatas
 
 # Leetcode
 
