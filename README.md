@@ -462,6 +462,28 @@ const duplicateZeros = arr => {
 
 ## SQL
 
+### Short Films
+```sql
+SELECT m.movie_title,
+    m.movie_year,
+    CONCAT(director_first_name, director_last_name) AS "director_name",
+    CONCAT(actor_first_name, actor_last_name) AS "actor_name",
+    mc.role
+FROM movies AS m
+JOIN movies_cast as mc
+ON mc.movie_id = m.movie_id
+JOIN actors AS a
+ON a.actor_id = mc.actor_id
+JOIN movies_directors AS md
+ON md.movie_id = m.movie_id
+JOIN directors AS d
+ON d.director_id = md.director_id
+ORDER BY m.movie_time ASC
+LIMIT 1
+
+--I put in ASC just to remind myself of what is going on
+```
+
 ### Neutral Reviewers
 ```sql
 SELECT r.reviewer_name
