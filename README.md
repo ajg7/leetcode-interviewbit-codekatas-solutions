@@ -4,6 +4,13 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 511. Game Play Analysis I
+```sql
+SELECT A.player_id, MIN(A.event_date) AS first_login
+FROM Activity AS A
+GROUP BY A.player_id;
+```
+
 ### 1623. All Valid Triplets That Can Represent a Country
 ```sql
 SELECT A.student_name AS member_A, B.student_name AS member_B, C.student_name AS member_C
