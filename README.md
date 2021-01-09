@@ -4,6 +4,15 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 197. Rising Temperature
+```sql
+SELECT W.id
+FROM Weather as W
+JOIN Weather as W2
+ON DATEDIFF(W.recordDate, W2.recordDate) = 1
+AND W.temperature > W2.temperature;
+```
+
 ### 620. Not Boring Movies
 ```sql
 SELECT *
