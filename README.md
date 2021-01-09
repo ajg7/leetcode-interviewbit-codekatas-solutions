@@ -4,6 +4,18 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1623. All Valid Triplets That Can Represent a Country
+```sql
+SELECT A.student_name AS member_A, B.student_name AS member_B, C.student_name AS member_C
+FROM SchoolA AS A
+JOIN SchoolB AS B
+ON A.student_id <> B.student_id AND A.student_name <> B.student_name
+JOIN SchoolC AS C
+ON A.student_id <> C.student_id AND B.student_id <> C.student_id
+AND A.student_name <> C.student_name
+AND B.student_name <> C.student_name;
+```
+
 ### 1407. Top Travellers
 ```sql
 SELECT name, IFNULL(SUM(distance), 0) AS travelled_distance
