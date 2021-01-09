@@ -4,6 +4,16 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1407. Top Travellers
+```sql
+SELECT name, IFNULL(SUM(distance), 0) AS travelled_distance
+FROM Users as U
+LEFT JOIN Rides as R
+ON R.user_id = U.id
+GROUP BY U.id
+ORDER BY travelled_distance desc, name asc
+```
+
 ### 1050. Actors and Directors Who Cooperated At Least Three Times
 ```sql
 SELECT actor_id, director_id
