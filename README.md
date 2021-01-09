@@ -4,6 +4,14 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 620. Not Boring Movies
+```sql
+SELECT *
+FROM cinema
+WHERE id % 2 != 0 and description <> 'boring'
+order by rating desc;
+```
+
 ### 595. Big Countries
 ```sql
 SELECT name, population, area
