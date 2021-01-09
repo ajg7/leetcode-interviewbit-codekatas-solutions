@@ -2,6 +2,15 @@ My solutions for leetcode, interviewbit & codekatas
 
 # Leetcode
 
+## SQL
+
+### 595. Big Countries
+```sql
+SELECT name, population, area
+FROM World
+WHERE area > 3000000 or population > 25000000
+```
+
 ## Graphs
 
 ### 997. Find the Town Judge
@@ -460,7 +469,8 @@ const duplicateZeros = arr => {
 ```
 # InterviewBit
 
-## SQL
+## 
+
 
 ### Short Films
 ```sql
