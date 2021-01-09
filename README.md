@@ -4,6 +4,14 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1050. Actors and Directors Who Cooperated At Least Three Times
+```sql
+SELECT actor_id, director_id
+FROM ActorDirector
+GROUP BY actor_id, director_id
+HAVING COUNT(actor_id) >= 3
+```
+
 ### 197. Rising Temperature
 ```sql
 SELECT W.id
