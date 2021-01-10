@@ -4,6 +4,20 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1082. Sales Analysis I
+```sql
+SELECT S.seller_id
+FROM Sales AS S
+GROUP BY S.seller_id
+HAVING SUM(S.price) = (
+    SELECT SUM(S.price)
+    FROM Sales AS S
+    GROUP BY S.seller_id
+    ORDER BY SUM(S.price) desc
+    LIMIT 1
+);
+```
+
 ### 1495. Friendly Movies Streamed Last Month
 ```sql
 SELECT DISTINCT C.title
