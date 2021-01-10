@@ -4,6 +4,17 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1280. Students and Examinations
+```sql
+SELECT stu.student_id, stu.student_name, sub.subject_name, SUM(e.subject_name IS NOT NULL) AS attended_exams
+FROM Students AS stu
+JOIN Subjects AS sub
+LEFT JOIN Examinations AS e
+ON stu.student_id = e.student_id AND sub.subject_name = e.subject_name
+GROUP BY stu.student_name, sub.subject_name
+ORDER BY stu.student_id, sub.subject_name
+```
+
 ### 511. Game Play Analysis I
 ```sql
 SELECT A.player_id, MIN(A.event_date) AS first_login
