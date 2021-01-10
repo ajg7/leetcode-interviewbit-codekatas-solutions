@@ -4,6 +4,17 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1565. Unique Orders and Customers Per Month
+```sql
+SELECT LEFT(order_date, 7) AS month,
+COUNT(order_id) AS order_count,
+COUNT(DISTINCT customer_id) AS customer_count
+FROM Orders
+WHERE invoice > 20
+GROUP BY LEFT(order_date, 7)
+ORDER BY month;
+```
+
 ### 175. Combine Two Tables
 ```sql
 SELECT P.FirstName, P.LastName, A.City, A.State
