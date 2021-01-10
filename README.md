@@ -4,6 +4,15 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 603. Consecutive Available Seats
+```sql
+SELECT DISTINCT C1.seat_id 
+FROM cinema AS C1, cinema AS C2 
+WHERE C1.free = 1 
+AND C2.free = 1 
+AND (C2.seat_id = C1.seat_id + 1 OR C2.seat_id = C1.seat_id -1);
+```
+
 ### 1082. Sales Analysis I
 ```sql
 SELECT S.seller_id
