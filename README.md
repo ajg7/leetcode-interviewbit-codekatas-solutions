@@ -76,6 +76,13 @@ FROM World
 WHERE area > 3000000 or population > 25000000
 ```
 
+### 1683. Invalid Tweets
+```sql
+SELECT T.tweet_id
+FROM Tweets AS T
+WHERE LENGTH(T.content) > 15;
+```
+
 ## Graphs
 
 ### 997. Find the Town Judge
