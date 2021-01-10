@@ -4,6 +4,17 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1495. Friendly Movies Streamed Last Month
+```sql
+SELECT DISTINCT C.title
+FROM Content as C
+JOIN TVProgram as TVP
+ON TVP.content_id = C.content_id
+WHERE C.content_type = 'Movies' 
+AND TVP.program_date BETWEEN '2020-06-01' AND '2020-06-30' 
+AND C.Kids_content = 'Y';
+```
+
 ### 1148. Article Views I
 ```sql
 SELECT author_id AS id
