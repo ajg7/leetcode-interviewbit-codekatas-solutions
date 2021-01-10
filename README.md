@@ -4,6 +4,14 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 175. Combine Two Tables
+```sql
+SELECT P.FirstName, P.LastName, A.City, A.State
+FROM Person AS P
+LEFT JOIN Address AS A
+ON P.PersonId = A.PersonId
+```
+
 ### 1280. Students and Examinations
 ```sql
 SELECT stu.student_id, stu.student_name, sub.subject_name, SUM(e.subject_name IS NOT NULL) AS attended_exams
