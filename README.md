@@ -4,6 +4,18 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1303. Find the Team Size
+```sql
+SELECT E1.employee_id, E2.team_size
+FROM Employee AS E1
+JOIN (
+    SELECT team_id, COUNT(1) AS team_size
+    FROM Employee
+    GROUP BY team_id
+    ) AS E2
+ON E1.team_id = E2.team_id;
+```
+
 ### 1350. Students With Invalid Departments
 ```sql
 SELECT S.id, S.name
