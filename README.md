@@ -4,6 +4,15 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1350. Students With Invalid Departments
+```sql
+SELECT S.id, S.name
+FROM Students AS S
+LEFT JOIN Departments AS D
+ON D.id = S.department_id
+WHERE D.name IS Null AND D.id IS NULL;
+```
+
 ### 603. Consecutive Available Seats
 ```sql
 SELECT DISTINCT C1.seat_id 
