@@ -4,6 +4,13 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 610. Triangle Judgement
+```sql
+SELECT T.x, T.y, T.z, 
+IF(T.x + T.y > T.z AND T.y + T.z > T.x AND T.z + T.x > T.y, 'Yes', 'No') AS triangle
+FROM triangle AS T
+```
+
 ### 182. Duplicate Emails
 ```sql
 SELECT P.Email
