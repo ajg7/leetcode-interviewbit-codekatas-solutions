@@ -4,6 +4,14 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 182. Duplicate Emails
+```sql
+SELECT P.Email
+FROM Person AS P
+GROUP BY P.Email
+HAVING COUNT(P.Email) > 1
+```
+
 ### 1303. Find the Team Size
 ```sql
 SELECT E1.employee_id, E2.team_size
