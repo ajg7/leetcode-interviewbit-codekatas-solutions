@@ -4,6 +4,15 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 181. Employees Earning More Than Their Managers
+```sql
+SELECT E.name AS Employee
+FROM Employee AS E
+JOIN Employee AS E2 
+ON E.ManagerID = E2.Id
+WHERE E.Salary > E2.Salary
+```
+
 ### 610. Triangle Judgement
 ```sql
 SELECT T.x, T.y, T.z, 
