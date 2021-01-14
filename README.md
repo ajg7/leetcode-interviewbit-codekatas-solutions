@@ -639,8 +639,21 @@ const duplicateZeros = arr => {
 ```
 # InterviewBit
 
-## 
+## SQL
 
+### Actors and Their Movies
+```sql
+SELECT M.movie_title
+FROM movies AS M
+RIGHT JOIN movies_cast AS MC
+ON MC.movie_id = M.movie_id
+WHERE MC.actor_id = (
+    SELECT MC.actor_id
+    FROM movies_cast AS MC
+    GROUP BY MC.actor_id
+    HAVING COUNT(MC.actor_id) > 1
+)
+```
 
 ### Short Films
 ```sql
