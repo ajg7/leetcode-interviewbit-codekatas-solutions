@@ -655,7 +655,7 @@ const duplicateZeros = arr => {
 SELECT M.movie_title
 FROM movies AS M
 RIGHT JOIN movies_cast AS MC
-ON MC.movie_id = M.movie_id
+USING (movie_id)
 WHERE MC.actor_id = (
     SELECT MC.actor_id
     FROM movies_cast AS MC
