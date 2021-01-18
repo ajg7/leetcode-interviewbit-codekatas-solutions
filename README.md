@@ -4,6 +4,14 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1729. Find Followers Count
+```sql
+SELECT F.user_id, COUNT(F.follower_id) AS followers_count
+FROM Followers AS F
+GROUP BY F.user_id
+ORDER BY F.user_id;
+```
+
 ### 1173. Immediate Food Delivery I
 ```sql
 SELECT ROUND(SUM(D.order_date = D.customer_pref_delivery_date) * 100 / COUNT(D.delivery_id), 2) AS immediate_percentage
