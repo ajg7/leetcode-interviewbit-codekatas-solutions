@@ -4,6 +4,12 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1173. Immediate Food Delivery I
+```sql
+SELECT ROUND(SUM(D.order_date = D.customer_pref_delivery_date) * 100 / COUNT(D.delivery_id), 2) AS immediate_percentage
+FROM Delivery AS D;
+```
+
 ### 181. Employees Earning More Than Their Managers
 ```sql
 SELECT E.name AS Employee
