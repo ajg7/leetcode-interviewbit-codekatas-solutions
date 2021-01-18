@@ -6,7 +6,7 @@ My solutions for leetcode, interviewbit & codekatas
 
 176. Second Highest Salary
 ```sql
-SELECT Max(Salary) AS SecondHighestSalary
+SELECT MAX(Salary) AS SecondHighestSalary
 FROM Employee
 WHERE Salary < (
     SELECT MAX(Salary) 
