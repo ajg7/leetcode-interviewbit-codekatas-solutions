@@ -4,7 +4,7 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
-176. Second Highest Salary
+### 176. Second Highest Salary
 ```sql
 SELECT MAX(Salary) AS SecondHighestSalary
 FROM Employee
