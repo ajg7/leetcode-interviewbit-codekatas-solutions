@@ -4,6 +4,16 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+176. Second Highest Salary
+```sql
+SELECT Max(Salary) AS SecondHighestSalary
+FROM Employee
+WHERE Salary < (
+    SELECT MAX(Salary) 
+    FROM Employee
+)
+```
+
 ### 1729. Find Followers Count
 ```sql
 SELECT F.user_id, COUNT(F.follower_id) AS followers_count
