@@ -4,6 +4,14 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 596. Classes More Than 5 Students
+```sql
+SELECT class
+FROM courses
+GROUP BY class
+HAVING COUNT(DISTINCT student) >= 5
+```
+
 ### 176. Second Highest Salary
 ```sql
 SELECT MAX(Salary) AS SecondHighestSalary
