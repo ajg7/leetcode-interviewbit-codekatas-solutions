@@ -153,6 +153,17 @@ FROM Activity AS A
 GROUP BY A.player_id;
 ```
 
+### 512. Game Play Analysis II
+```sql
+SELECT A.player_id, A.device_id
+FROM Activity AS A, (
+    SELECT A2.player_id, MIN(A2.event_date) AS Min_Date
+    FROM Activity AS A2
+    GROUP BY A2.player_id
+) AS Derived_Table
+WHERE A.player_id=Derived_Table.player_id and A.event_date=Derived_Table.Min_Date
+```
+
 ### 1623. All Valid Triplets That Can Represent a Country
 ```sql
 SELECT A.student_name AS member_A, B.student_name AS member_B, C.student_name AS member_C
