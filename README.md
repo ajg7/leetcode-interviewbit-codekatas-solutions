@@ -4,6 +4,16 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 1571. Warehouse Manager
+```sql
+SELECT W.name AS warehouse_name, SUM(units * volume) AS volume
+FROM Warehouse AS W
+JOIN (SELECT product_id, Width * Length * Height AS volume
+     FROM Products) AS P
+USING (product_id)
+GROUP BY W.name;
+```
+
 ### 596. Classes More Than 5 Students
 ```sql
 SELECT class
