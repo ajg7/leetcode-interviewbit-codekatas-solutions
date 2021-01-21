@@ -4,6 +4,13 @@ My solutions for leetcode, interviewbit & codekatas
 
 ## SQL
 
+### 613. Shortest Distance in a Line
+```sql
+SELECT MIN(ABS(P2.x - P1.x)) AS shortest
+FROM point AS P1, point AS P2
+WHERE P1.x <> P2.x;
+```
+
 ### 1571. Warehouse Manager
 ```sql
 SELECT W.name AS warehouse_name, SUM(units * volume) AS volume
