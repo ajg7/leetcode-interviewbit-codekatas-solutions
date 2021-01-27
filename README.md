@@ -275,6 +275,26 @@ const findJudge = (N, trust) => {
 };
 ```
 
+## Hash Maps
+
+### 1. Two-Sum
+```javascript
+const twoSum = (nums, target) => {
+    const map = {};
+    
+    for (let i = 0; i < nums.length; i++) {
+        let thisNum = nums[i];
+        map[thisNum] = i;
+    }
+    for (let i = 0; i < nums.length; i++) {
+        let diff = target - nums[i];
+        if (map.hasOwnProperty(diff) && map[diff] !== i) {
+            return [i, map[diff]]
+        }
+    }
+}
+```
+
 ## Trees
 
 ### 111. Minimum Depth of Binary Tree (BFS)
