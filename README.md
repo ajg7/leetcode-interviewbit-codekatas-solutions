@@ -675,15 +675,8 @@ const countNegatives = grid => {
 ### 217. Contains Duplicate
 ```javascript
 const containsDuplicate = nums => {
-    const numSet = new Set()
-    for (const num of nums) {
-        numSet.add(num)
-    }
-    if (numSet.size !== nums.length) {
-        return true;
-    } else {
-        return false;
-    }
+    const numSet = new Set(nums);
+    return numSet.size !== nums.length; 
 };
 ```
 
