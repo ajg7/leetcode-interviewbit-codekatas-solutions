@@ -1,0 +1,24 @@
+{
+  "name": "leetcode-interviewbit-codekatas-solutions",
+  "version": "1.0.0",
+  "description": "My solutions for leetcode, interviewbit & codekatas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajg7/leetcode-interviewbit-codekatas-solutions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajg7/leetcode-interviewbit-codekatas-solutions/issues"
+  },
+  "homepage": "https://github.com/ajg7/leetcode-interviewbit-codekatas-solutions#readme",
+  "devDependencies": {
+    "prettier": "2.2.1"
+  }
+}

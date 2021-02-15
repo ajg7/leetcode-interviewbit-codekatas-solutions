@@ -5,491 +5,515 @@ My solutions for leetcode, interviewbit & codekatas
 ## Graphs
 
 ### 997. Find the Town Judge
+
 ```javascript
 const findJudge = (N, trust) => {
-    const map = {};
-    
-    for(const [person1, person2] of trust) {
-        if (!map[person1]) map[person1] = { "in": 0, "out": 0 };
-        if (!map[person2]) map[person2] = { "in": 0, "out": 0 };
-        
-        map[person1].out++;
-        map[person2].in++;
-    }
-    
-    for (const [person, degrees] of Object.entries(map)) {
-        if (degrees.in === N - 1 && degrees.out === 0) {
-            return +person;
-        }
-    }
-    
-    return -1;
+	const map = {};
+
+	for (const [person1, person2] of trust) {
+		if (!map[person1]) map[person1] = { in: 0, out: 0 };
+		if (!map[person2]) map[person2] = { in: 0, out: 0 };
+
+		map[person1].out++;
+		map[person2].in++;
+	}
+
+	for (const [person, degrees] of Object.entries(map)) {
+		if (degrees.in === N - 1 && degrees.out === 0) {
+			return +person;
+		}
+	}
+
+	return -1;
 };
 ```
 
 ## Hash Maps
 
 ### 1. Two-Sum
+
 ```javascript
 const twoSum = (nums, target) => {
-    const map = {};
-    
-    for (let i = 0; i < nums.length; i++) {
-        let thisNum = nums[i];
-        map[thisNum] = i;
-    }
-    for (let i = 0; i < nums.length; i++) {
-        let diff = target - nums[i];
-        if (map.hasOwnProperty(diff) && map[diff] !== i) {
-            return [i, map[diff]]
-        }
-    }
-}
+	const map = {};
+
+	for (let i = 0; i < nums.length; i++) {
+		let thisNum = nums[i];
+		map[thisNum] = i;
+	}
+	for (let i = 0; i < nums.length; i++) {
+		let diff = target - nums[i];
+		if (map.hasOwnProperty(diff) && map[diff] !== i) {
+			return [i, map[diff]];
+		}
+	}
+};
 ```
 
 ## Trees
 
 ### 111. Minimum Depth of Binary Tree (BFS)
+
 ```javascript
-const minDepth = root => { 
-    if (!root) return 0;
-    if (!root.left) return minDepth(root.right) + 1;
-    if (!root.right) return minDepth(root.left) + 1;
-    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+const minDepth = root => {
+	if (!root) return 0;
+	if (!root.left) return minDepth(root.right) + 1;
+	if (!root.right) return minDepth(root.left) + 1;
+	return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
 };
 ```
 
 ### 104. Maximum Depth of Binary Tree (DFS)
+
 ```javascript
 const maxDepth = root => {
-    const checkDepth = (node, depth) => {
-        if (node === null) return depth;
-        depth++;
-        const leftSide = checkDepth(node.left, depth);
-        const rightSide = checkDepth(node.right, depth);
-        return Math.max(leftSide, rightSide);
-    }
-    return checkDepth(root, 0)
+	const checkDepth = (node, depth) => {
+		if (node === null) return depth;
+		depth++;
+		const leftSide = checkDepth(node.left, depth);
+		const rightSide = checkDepth(node.right, depth);
+		return Math.max(leftSide, rightSide);
+	};
+	return checkDepth(root, 0);
 };
 ```
 
 ### 700. Search in a Binary Search Tree
+
 ```javascript
 const searchBST = (root, val) => {
-    if (!root) return null;
-    if (root.val === val) return root;
-    if (root.val > val) return searchBST(root.left, val);
-    if (root.val < val) return searchBST(root.right, val);
+	if (!root) return null;
+	if (root.val === val) return root;
+	if (root.val > val) return searchBST(root.left, val);
+	if (root.val < val) return searchBST(root.right, val);
 };
 ```
 
 ### 617. Merge Two Binary Trees
+
 ```javascript
 const mergeTrees = (t1, t2) => {
-    if (!t1 || !t2) return t1 || t2;
-    t1.val += t2.val;
-    t1.left = mergeTrees(t1.left, t2.left);
-    t1.right = mergeTrees(t1.right, t2.right);
-    return t1;
+	if (!t1 || !t2) return t1 || t2;
+	t1.val += t2.val;
+	t1.left = mergeTrees(t1.left, t2.left);
+	t1.right = mergeTrees(t1.right, t2.right);
+	return t1;
 };
 ```
 
 ### 938. Range Sum of BST
+
 ```javascript
 const rangeSumBST = (root, low, high) => {
-    if (!root) return 0;
-    if (root.val < low)  return rangeSumBST(root.right, low, high);
-    if (root.val > high) return rangeSumBST(root.left, low, high);
-    return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
+	if (!root) return 0;
+	if (root.val < low) return rangeSumBST(root.right, low, high);
+	if (root.val > high) return rangeSumBST(root.left, low, high);
+	return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
 };
 ```
 
 ## Linked Lists
 
 ### 328. Odd Even Linked List
+
 ```javascript
 const oddEvenList = head => {
-    if (!head) return null
-    
-    let oddList = new ListNode(-1);
-    let evenList = new ListNode(-1);
-    let oddStart = oddList;
-    let evenStart = evenList;
-    let placeValue = 1;
-    let current = head;
-    while (current) {
-        if (placeValue % 2 === 1) {
-            oddList.next = current;
-            oddList = oddList.next
-        } else {
-            evenList.next = current;
-            evenList = evenList.next;
-        }
-        placeValue++;
-        current = current.next;
-    }
-    
-    oddList.next = evenStart.next;
-    evenList.next = null;
-    
-    return oddStart.next;
+	if (!head) return null;
+
+	let oddList = new ListNode(-1);
+	let evenList = new ListNode(-1);
+	let oddStart = oddList;
+	let evenStart = evenList;
+	let placeValue = 1;
+	let current = head;
+	while (current) {
+		if (placeValue % 2 === 1) {
+			oddList.next = current;
+			oddList = oddList.next;
+		} else {
+			evenList.next = current;
+			evenList = evenList.next;
+		}
+		placeValue++;
+		current = current.next;
+	}
+
+	oddList.next = evenStart.next;
+	evenList.next = null;
+
+	return oddStart.next;
 };
 ```
 
 ### 19. Remove the nth Node from End of the List
+
 ```javascript
 const removeNthFromEnd = (head, n) => {
-    let fast = head;
-    let slow = head;
-    while (n > 0){
-        n--;
-        fast = fast.next;
-    }
-    let prev = null;
-    while (fast != null){
-        fast = fast.next;
-        prev = slow;
-        slow = slow.next;
-    }
-    if (prev == null){
-        return head.next;
-    }
-    prev.next = slow.next;
-    slow.next = null;
-    return head;
+	let fast = head;
+	let slow = head;
+	while (n > 0) {
+		n--;
+		fast = fast.next;
+	}
+	let prev = null;
+	while (fast != null) {
+		fast = fast.next;
+		prev = slow;
+		slow = slow.next;
+	}
+	if (prev == null) {
+		return head.next;
+	}
+	prev.next = slow.next;
+	slow.next = null;
+	return head;
 };
 ```
 
 ### 160. Intersection of Two Linked Lists
+
 ```javascript
 const getIntersectionNode = (headA, headB) => {
-    if (!headA || !headB) return null;
-    let pointerA = headA;
-    let pointerB = headB;
-    
-    while (pointerA && pointerB && pointerA !== pointerB) {
-        pointerA = pointerA.next;
-        pointerB = pointerB.next;
-        
-        if (pointerA === pointerB) return pointerA;
-        if (!pointerA) pointerA = headA;
-        if (!pointerB) pointerB = headB;
-    }
-    return pointerA;
+	if (!headA || !headB) return null;
+	let pointerA = headA;
+	let pointerB = headB;
+
+	while (pointerA && pointerB && pointerA !== pointerB) {
+		pointerA = pointerA.next;
+		pointerB = pointerB.next;
+
+		if (pointerA === pointerB) return pointerA;
+		if (!pointerA) pointerA = headA;
+		if (!pointerB) pointerB = headB;
+	}
+	return pointerA;
 };
 ```
 
 ### 142. Linked List Cycle II
+
 ```javascript
 const detectCycle = head => {
-    //hare is the fast pointer and tortoise is the slow pointer
-    //Floyd's Algorithm
-    let hare = head;
-    let tortoise = head;
-    while (hare && hare.next) {
-        tortoise = tortoise.next;
-        hare = hare.next.next;
-        if (hare === tortoise) {
-            tortoise = head;
-            while (tortoise !== hare) {
-                tortoise = tortoise.next;
-                hare = hare.next;
-            }
-            return hare;
-        }
-    }
-    return null
+	//hare is the fast pointer and tortoise is the slow pointer
+	//Floyd's Algorithm
+	let hare = head;
+	let tortoise = head;
+	while (hare && hare.next) {
+		tortoise = tortoise.next;
+		hare = hare.next.next;
+		if (hare === tortoise) {
+			tortoise = head;
+			while (tortoise !== hare) {
+				tortoise = tortoise.next;
+				hare = hare.next;
+			}
+			return hare;
+		}
+	}
+	return null;
 };
 ```
 
 ### 141. Linked List Cycle
+
 ```javascript
 const hasCycle = head => {
-    let slow = head;
-    let fast = head;
-    while (fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-        if (slow === fast) return true;
-    }
-    return false;
-    
+	let slow = head;
+	let fast = head;
+	while (fast && fast.next) {
+		slow = slow.next;
+		fast = fast.next.next;
+		if (slow === fast) return true;
+	}
+	return false;
 };
 ```
 
 ### 21. Merge Two Sorted Lists
+
 ```javascript
 const mergeTwoLists = (l1, l2) => {
-    let dummyhead = new ListNode();
-    let curr = dummyhead;
-    
-    while (l1 && l2) {
-        if (l1.val < l2.val) {
-            curr.next = l1;
-            l1 = l1.next
-        } else {
-            curr.next = l2;
-            l2 = l2.next;
-        }
-        curr = curr.next;
-    }
-    while (l1) {
-        curr.next = l1;
-        l1 = l1.next;
-        curr = curr.next;
-    }
-    while (l2) {
-        curr.next = l2;
-        l2 = l2.next;
-        curr = curr.next
-    }
-    return dummyhead.next;
+	let dummyhead = new ListNode();
+	let curr = dummyhead;
+
+	while (l1 && l2) {
+		if (l1.val < l2.val) {
+			curr.next = l1;
+			l1 = l1.next;
+		} else {
+			curr.next = l2;
+			l2 = l2.next;
+		}
+		curr = curr.next;
+	}
+	while (l1) {
+		curr.next = l1;
+		l1 = l1.next;
+		curr = curr.next;
+	}
+	while (l2) {
+		curr.next = l2;
+		l2 = l2.next;
+		curr = curr.next;
+	}
+	return dummyhead.next;
 };
 ```
 
 ### 234. Palindrome Linked List
+
 ```javascript
 // Stack Solution
 
 const isPalindrome = head => {
-    const stack = []
-    
-    let curr = head
-    while (curr) {
-        stack.push(curr.val)
-        curr = curr.next
-    }
-    
-    while (head) {
-        const top = stack.pop()
-        if (head.val !== top) 
-            return false
-        
-        head = head.next
-    }
-    
-    return true
+	const stack = [];
+
+	let curr = head;
+	while (curr) {
+		stack.push(curr.val);
+		curr = curr.next;
+	}
+
+	while (head) {
+		const top = stack.pop();
+		if (head.val !== top) return false;
+
+		head = head.next;
+	}
+
+	return true;
 };
 
 // Reverse Linked List Solution
 
 const isPalindrome = head => {
-    if (!head) return true
-    const copyHead = copy(head)
-    const reversedHead = reverse(copyHead)
-    return isEqual(head, reversedHead)
+	if (!head) return true;
+	const copyHead = copy(head);
+	const reversedHead = reverse(copyHead);
+	return isEqual(head, reversedHead);
 };
 
 const isEqual = (l1, l2) => {
-    while (l1 && l2) {
-        if (l1.val !== l2.val) {
-            return false
-        }
-        
-        l1 = l1.next
-        l2 = l2.next
-    }
-    
-    return !l1 && !l2
-}
+	while (l1 && l2) {
+		if (l1.val !== l2.val) {
+			return false;
+		}
+
+		l1 = l1.next;
+		l2 = l2.next;
+	}
+
+	return !l1 && !l2;
+};
 
 const reverse = head => {
-    let prev = null
-    let next = null
-    while (head) {
-        next = head.next
-        head.next = prev
-        prev = head
-        head = next
-    }
-    return prev
-}
+	let prev = null;
+	let next = null;
+	while (head) {
+		next = head.next;
+		head.next = prev;
+		prev = head;
+		head = next;
+	}
+	return prev;
+};
 
 const copy = head => {
-    const copyHead = new ListNode(head.val)
-    let copyCurr = copyHead
-    head = head.next
-    
-    while (head) {
-        copyCurr.next = new ListNode(head.val)
-        copyCurr = copyCurr.next
-        head = head.next
-    }
-    
-    return copyHead
-}
+	const copyHead = new ListNode(head.val);
+	let copyCurr = copyHead;
+	head = head.next;
+
+	while (head) {
+		copyCurr.next = new ListNode(head.val);
+		copyCurr = copyCurr.next;
+		head = head.next;
+	}
+
+	return copyHead;
+};
 ```
 
 ### 83. Remove Duplicates from Sorted List
+
 ```javascript
 const deleteDuplicates = head => {
-    if (!head) return null;
-    let current = head;
-    while (current && current.next) {
-        if (current.val === current.next.val) {
-            current.next = current.next.next;
-        } else {
-            current = current.next
-        }
-    }
-    return head
+	if (!head) return null;
+	let current = head;
+	while (current && current.next) {
+		if (current.val === current.next.val) {
+			current.next = current.next.next;
+		} else {
+			current = current.next;
+		}
+	}
+	return head;
 };
 ```
 
 ### 203. Remove Linked List Elements
+
 ```javascript
- const removeElements = (head, val) => {
-    const dummy = new ListNode(NaN)
-    dummy.next = head
-    
-    let current = dummy
-    while (current && current.next) {
-        const next = current.next
-        if (next.val === val) {
-            current.next = current.next.next
-        } else {
-            current = current.next
-        }
-    }
-    
-    return dummy.next
+const removeElements = (head, val) => {
+	const dummy = new ListNode(NaN);
+	dummy.next = head;
+
+	let current = dummy;
+	while (current && current.next) {
+		const next = current.next;
+		if (next.val === val) {
+			current.next = current.next.next;
+		} else {
+			current = current.next;
+		}
+	}
+
+	return dummy.next;
 };
 ```
 
 ### 206. Reverse a Linked List
+
 ```javascript
 const reverseList = head => {
-    let curr = head;
-    let prev = null;
-    let nextTemp = null;
-    
-    while (curr) {
-        nextTemp = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = nextTemp;
-    }
-    return prev
+	let curr = head;
+	let prev = null;
+	let nextTemp = null;
+
+	while (curr) {
+		nextTemp = curr.next;
+		curr.next = prev;
+		prev = curr;
+		curr = nextTemp;
+	}
+	return prev;
 };
 ```
 
 ### 237. Delete Node in a Linked List
+
 ```javascript
 const deleteNode = node => {
-    node.val = node.next.val;
-    node.next = node.next.next;
+	node.val = node.next.val;
+	node.next = node.next.next;
 };
 ```
 
 ### 876. Middle of the Linked List
+
 ```javascript
 const middleNode = head => {
-    let fast = head;
-    let slow = head;
-    
-    while (fast && fast.next) {
-        fast = fast.next.next;
-        slow = slow.next;
-    }
-    return slow
+	let fast = head;
+	let slow = head;
+
+	while (fast && fast.next) {
+		fast = fast.next.next;
+		slow = slow.next;
+	}
+	return slow;
 };
 ```
 
 ### Convert Binary Number in a Linked List to Integer
+
 ```javascript
 const getDecimalValue = head => {
-    const result = [];
-    while (head) {
-        result.push(String(head.val));
-        head = head.next
-    }
-    return parseInt(result.join(""), 2)
+	const result = [];
+	while (head) {
+		result.push(String(head.val));
+		head = head.next;
+	}
+	return parseInt(result.join(""), 2);
 };
 ```
 
 ## Binary Search
 
 ### 1351. Count Negative Numbers in a Sorted Matrix
+
 ```javascript
 const countNegatives = grid => {
-    let count = 0;
-    for (let i = 0; i < grid.length; i++) {
-        for (let j = 0; j < grid[i].length; j++) {
-            if (Math.sign(grid[i][j]) === -1) count++;
-        }
-    } 
-    return count
+	let count = 0;
+	for (let i = 0; i < grid.length; i++) {
+		for (let j = 0; j < grid[i].length; j++) {
+			if (Math.sign(grid[i][j]) === -1) count++;
+		}
+	}
+	return count;
 };
 ```
 
 ## Arrays
 
 ### 217. Contains Duplicate
+
 ```javascript
 const containsDuplicate = nums => {
-    const numSet = new Set(nums);
-    return numSet.size !== nums.length; 
+	const numSet = new Set(nums);
+	return numSet.size !== nums.length;
 };
 ```
 
 ### Remove Element
+
 ```javascript
 // Pointer Solution
 const removeElement = (nums, val) => {
-    let pointer = 0;
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] !== val) {
-            nums[pointer] = nums[i]
-            pointer++
-        }
-    }
-    return pointer
+	let pointer = 0;
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] !== val) {
+			nums[pointer] = nums[i];
+			pointer++;
+		}
+	}
+	return pointer;
 };
 
 // Splice Solution
 const removeElement = (nums, val) => {
-    for (let i = nums.length - 1; i >= 0; i--) {
-        if (nums[i] === val) nums.splice(i, 1);
-    }
-    return nums.length;
+	for (let i = nums.length - 1; i >= 0; i--) {
+		if (nums[i] === val) nums.splice(i, 1);
+	}
+	return nums.length;
 };
 ```
 
 ### Merge Sorted Array
+
 ```javascript
 const merge = (nums1, m, nums2, n) => {
-    let first = m - 1;
-    let second = n  -1;
-    
-    for (let i = m + n - 1; i >= 0; i--) {
-        if (second < 0) break;
-        if (nums1[first] > nums2[second]) {
-            nums1[i] = nums1[first];
-            first--;
-        } else {
-            nums1[i] = nums2[second];
-            second--;
-        }
-    }
+	let first = m - 1;
+	let second = n - 1;
+
+	for (let i = m + n - 1; i >= 0; i--) {
+		if (second < 0) break;
+		if (nums1[first] > nums2[second]) {
+			nums1[i] = nums1[first];
+			first--;
+		} else {
+			nums1[i] = nums2[second];
+			second--;
+		}
+	}
 };
 ```
 
 ### Duplicate Zeros
+
 ```javascript
 const duplicateZeros = arr => {
-    for (let i = 0; i < arr.length; i++) {
-        if (!arr[i]) {
-            arr.splice(i, 0, 0);
-            i++
-            arr.pop();
-        }  
-    }
+	for (let i = 0; i < arr.length; i++) {
+		if (!arr[i]) {
+			arr.splice(i, 0, 0);
+			i++;
+			arr.pop();
+		}
+	}
 };
 ```
 
 ## SQL
 
 ### 613. Shortest Distance in a Line
+
 ```sql
 SELECT MIN(ABS(P2.x - P1.x)) AS shortest
 FROM point AS P1, point AS P2
@@ -497,6 +521,7 @@ WHERE P1.x <> P2.x;
 ```
 
 ### 1571. Warehouse Manager
+
 ```sql
 SELECT W.name AS warehouse_name, SUM(units * volume) AS volume
 FROM Warehouse AS W
@@ -507,6 +532,7 @@ GROUP BY W.name;
 ```
 
 ### 596. Classes More Than 5 Students
+
 ```sql
 SELECT class
 FROM courses
@@ -515,16 +541,18 @@ HAVING COUNT(DISTINCT student) >= 5
 ```
 
 ### 176. Second Highest Salary
+
 ```sql
 SELECT MAX(Salary) AS SecondHighestSalary
 FROM Employee
 WHERE Salary < (
-    SELECT MAX(Salary) 
+    SELECT MAX(Salary)
     FROM Employee
 )
 ```
 
 ### 1729. Find Followers Count
+
 ```sql
 SELECT F.user_id, COUNT(F.follower_id) AS followers_count
 FROM Followers AS F
@@ -533,28 +561,32 @@ ORDER BY F.user_id;
 ```
 
 ### 1173. Immediate Food Delivery I
+
 ```sql
 SELECT ROUND(SUM(D.order_date = D.customer_pref_delivery_date) * 100 / COUNT(D.delivery_id), 2) AS immediate_percentage
 FROM Delivery AS D;
 ```
 
 ### 181. Employees Earning More Than Their Managers
+
 ```sql
 SELECT E.name AS Employee
 FROM Employee AS E
-JOIN Employee AS E2 
+JOIN Employee AS E2
 ON E.ManagerID = E2.Id
 WHERE E.Salary > E2.Salary
 ```
 
 ### 610. Triangle Judgement
+
 ```sql
-SELECT T.x, T.y, T.z, 
+SELECT T.x, T.y, T.z,
 IF(T.x + T.y > T.z AND T.y + T.z > T.x AND T.z + T.x > T.y, 'Yes', 'No') AS triangle
 FROM triangle AS T
 ```
 
 ### 182. Duplicate Emails
+
 ```sql
 SELECT P.Email
 FROM Person AS P
@@ -563,6 +595,7 @@ HAVING COUNT(P.Email) > 1
 ```
 
 ### 1303. Find the Team Size
+
 ```sql
 SELECT E1.employee_id, E2.team_size
 FROM Employee AS E1
@@ -575,6 +608,7 @@ ON E1.team_id = E2.team_id;
 ```
 
 ### 1350. Students With Invalid Departments
+
 ```sql
 SELECT S.id, S.name
 FROM Students AS S
@@ -584,15 +618,17 @@ WHERE D.name IS Null AND D.id IS NULL;
 ```
 
 ### 603. Consecutive Available Seats
+
 ```sql
-SELECT DISTINCT C1.seat_id 
-FROM cinema AS C1, cinema AS C2 
-WHERE C1.free = 1 
-AND C2.free = 1 
+SELECT DISTINCT C1.seat_id
+FROM cinema AS C1, cinema AS C2
+WHERE C1.free = 1
+AND C2.free = 1
 AND (C2.seat_id = C1.seat_id + 1 OR C2.seat_id = C1.seat_id -1);
 ```
 
 ### 1082. Sales Analysis I
+
 ```sql
 SELECT S.seller_id
 FROM Sales AS S
@@ -607,17 +643,19 @@ HAVING SUM(S.price) = (
 ```
 
 ### 1495. Friendly Movies Streamed Last Month
+
 ```sql
 SELECT DISTINCT C.title
 FROM Content AS C
 JOIN TVProgram AS TVP
 ON TVP.content_id = C.content_id
-WHERE C.content_type = 'Movies' 
-AND TVP.program_date BETWEEN '2020-06-01' AND '2020-06-30' 
+WHERE C.content_type = 'Movies'
+AND TVP.program_date BETWEEN '2020-06-01' AND '2020-06-30'
 AND C.Kids_content = 'Y';
 ```
 
 ### 1148. Article Views I
+
 ```sql
 SELECT author_id AS id
 FROM Views
@@ -627,6 +665,7 @@ ORDER BY author_id;
 ```
 
 ### 1565. Unique Orders and Customers Per Month
+
 ```sql
 SELECT LEFT(order_date, 7) AS month,
 COUNT(order_id) AS order_count,
@@ -638,6 +677,7 @@ ORDER BY month;
 ```
 
 ### 175. Combine Two Tables
+
 ```sql
 SELECT P.FirstName, P.LastName, A.City, A.State
 FROM Person AS P
@@ -646,6 +686,7 @@ ON P.PersonId = A.PersonId
 ```
 
 ### 1280. Students and Examinations
+
 ```sql
 SELECT stu.student_id, stu.student_name, sub.subject_name, SUM(e.subject_name IS NOT NULL) AS attended_exams
 FROM Students AS stu
@@ -657,6 +698,7 @@ ORDER BY stu.student_id, sub.subject_name
 ```
 
 ### 511. Game Play Analysis I
+
 ```sql
 SELECT A.player_id, MIN(A.event_date) AS first_login
 FROM Activity AS A
@@ -664,6 +706,7 @@ GROUP BY A.player_id;
 ```
 
 ### 512. Game Play Analysis II
+
 ```sql
 SELECT A.player_id, A.device_id
 FROM Activity AS A, (
@@ -675,6 +718,7 @@ WHERE A.player_id=Derived_Table.player_id and A.event_date=Derived_Table.Min_Dat
 ```
 
 ### 1623. All Valid Triplets That Can Represent a Country
+
 ```sql
 SELECT A.student_name AS member_A, B.student_name AS member_B, C.student_name AS member_C
 FROM SchoolA AS A
@@ -687,6 +731,7 @@ AND B.student_name <> C.student_name;
 ```
 
 ### 1407. Top Travellers
+
 ```sql
 SELECT name, IFNULL(SUM(distance), 0) AS travelled_distance
 FROM Users as U
@@ -697,6 +742,7 @@ ORDER BY travelled_distance desc, name asc
 ```
 
 ### 1050. Actors and Directors Who Cooperated At Least Three Times
+
 ```sql
 SELECT actor_id, director_id
 FROM ActorDirector
@@ -705,6 +751,7 @@ HAVING COUNT(actor_id) >= 3
 ```
 
 ### 197. Rising Temperature
+
 ```sql
 SELECT W.id
 FROM Weather as W
@@ -714,6 +761,7 @@ AND W.temperature > W2.temperature;
 ```
 
 ### 620. Not Boring Movies
+
 ```sql
 SELECT *
 FROM cinema
@@ -722,6 +770,7 @@ order by rating desc;
 ```
 
 ### 595. Big Countries
+
 ```sql
 SELECT name, population, area
 FROM World
@@ -729,6 +778,7 @@ WHERE area > 3000000 or population > 25000000
 ```
 
 ### 1683. Invalid Tweets
+
 ```sql
 SELECT T.tweet_id
 FROM Tweets AS T
@@ -740,6 +790,7 @@ WHERE LENGTH(T.content) > 15;
 ## SQL
 
 ### Actors and Their Movies
+
 ```sql
 SELECT M.movie_title
 FROM movies AS M
@@ -754,6 +805,7 @@ WHERE MC.actor_id = (
 ```
 
 ### Short Films
+
 ```sql
 SELECT m.movie_title,
     m.movie_year,
@@ -776,6 +828,7 @@ LIMIT 1
 ```
 
 ### Neutral Reviewers
+
 ```sql
 SELECT r.reviewer_name
 FROM reviewers as r
@@ -785,6 +838,7 @@ WHERE ra.reviewer_stars IS NULL;
 ```
 
 ### Movie Character
+
 ```sql
 SELECT CONCAT(d.director_first_name, d.director_last_name) AS director_name, m.movie_title
 FROM movies AS m
@@ -797,21 +851,21 @@ ON m.movie_id = mc.movie_id
 WHERE mc.role = 'SeanMaguire'
 ```
 
-# Code Katas
+<!-- # Code Katas
 
 ## Unique In Order
 ```javascript
 var uniqueInOrder=function(iterable){
   const result = []
   let prevChar = ''
-  
+
   for (const char of iterable) {
     if (prevChar !== char) {
       prevChar = char
       result.push(char)
     }
   }
-  
+
   return result
 }
 ```
@@ -854,8 +908,6 @@ const createPhoneNumber = nums => {
   const sectionThree = [nums[6], nums[7], nums[8], nums[9]]
   return [...sectionOne, ...sectionTwo, ...sectionThree].join("")
 }
-
-
 
 console.log(createPhoneNumber([6,6,0,8,6,4,4,6,7,8]))
 ```
@@ -929,5 +981,4 @@ const toSnakeCase = str => {
 }
 
 console.log(toSnakeCase("theCamelAndTheSnake"))
-```
-
+``` -->
