@@ -28,6 +28,14 @@ const findJudge = (N, trust) => {
 };
 ```
 
+## Bit Manipulation
+
+### 268. Missing Number
+
+```typescript
+
+```
+
 ## Hash Maps
 
 ### 1. Two-Sum
