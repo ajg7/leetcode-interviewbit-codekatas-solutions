@@ -33,7 +33,21 @@ const findJudge = (N, trust) => {
 ### 268. Missing Number
 
 ```typescript
+const missingNumber = (nums: number[]): number => {
+	if (!nums.length) return null;
 
+	let missingNum: number = nums.length;
+
+	for (const num of nums) {
+		missingNum ^= num;
+	}
+
+	for (let i = 0; i < nums.length; i++) {
+		missingNum ^= i;
+	}
+
+	return missingNum;
+};
 ```
 
 ## Hash Maps
