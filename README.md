@@ -477,6 +477,21 @@ const countNegatives = grid => {
 
 ## Arrays
 
+### 448. Find All Numbers Disappeared in an Array
+
+```typescript
+const findDisappearedNumbers = (nums: number[]): number[] => {
+	const result: number[] = [];
+	const numberSet = new Set(nums);
+
+	for (let i = 1; i <= nums.length; i++) {
+		if (!numberSet.has(i)) result.push(i);
+	}
+
+	return result;
+};
+```
+
 ### 217. Contains Duplicate
 
 ```javascript
