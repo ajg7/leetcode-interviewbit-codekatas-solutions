@@ -32,6 +32,8 @@ const findJudge = (N, trust) => {
 
 ### 268. Missing Number
 
+#### Bit Manipulation Solution
+
 ```typescript
 const missingNumber = (nums: number[]): number => {
 	if (!nums.length) return null;
@@ -47,6 +49,16 @@ const missingNumber = (nums: number[]): number => {
 	}
 
 	return missingNum;
+};
+```
+
+#### Gauss's Formula
+
+```typescript
+const missingNumber = (nums: number[]): number => {
+	const expectedSum: number = (nums.length * (nums.length + 1)) / 2;
+	const actualSum: number = nums.reduce((result, num) => result + num, 0);
+	return expectedSum - actualSum;
 };
 ```
 
