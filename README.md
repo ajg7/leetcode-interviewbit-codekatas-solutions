@@ -62,6 +62,20 @@ const missingNumber = (nums: number[]): number => {
 };
 ```
 
+### 136. Single Number
+
+```typescript
+const singleNumber = (nums: number[]): number => {
+	let singleNumber: number = 0;
+
+	for (const num of nums) {
+		singleNumber ^= num;
+	}
+
+	return singleNumber;
+};
+```
+
 ## Hash Maps
 
 ### 1. Two-Sum
