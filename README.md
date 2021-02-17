@@ -28,6 +28,27 @@ const findJudge = (N, trust) => {
 };
 ```
 
+## Dynamic Programming
+
+### 70. Climbing Stairs
+
+```typescript
+const climbStairs = (n: number): number => {
+	if (n === 1) return 1;
+
+	const memo: number[] = [n + 1];
+
+	memo[1] = 1;
+	memo[2] = 2;
+
+	for (let i = 3; i <= n; i++) {
+		memo[i] = memo[i - 1] + memo[i - 2];
+	}
+
+	return memo[n];
+};
+```
+
 ## Bit Manipulation
 
 ### 268. Missing Number
