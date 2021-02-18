@@ -871,6 +871,28 @@ WHERE LENGTH(T.content) > 15;
 
 ## Rust
 
+### 268. Missing Number
+
+```rust
+impl Solution {
+    pub fn missing_number(nums: Vec<i32>) -> i32 {
+        let mut missing_number: i32 = nums.len() as i32;
+        let mut counter: i32 = 0;
+        for num in nums {
+            missing_number ^= counter ^ num;
+            counter += 1;
+        }
+        missing_number
+    }
+}
+
+#[test]
+
+fn test() {
+    assert_eq!(Solution::missing_number(vec![3, 0, 1]), 2);
+}
+```
+
 ### 217. Contains Duplicate
 
 ```rust
