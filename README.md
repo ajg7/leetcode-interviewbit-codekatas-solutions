@@ -869,6 +869,34 @@ FROM Tweets AS T
 WHERE LENGTH(T.content) > 15;
 ```
 
+## Rust
+
+### 217. Contains Duplicate
+
+```rust
+use std::collections::HashSet;
+
+impl Solution {
+    pub fn contains_duplicate(nums: Vec<i32>) -> bool {
+        let mut numbers = HashSet::<i32>::new();
+        for number in nums {
+            if !numbers.contains(&number) {
+                numbers.insert(number);
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+#[test]
+fn test() {
+    let nums = vec![1, 2, 3, 1];
+    assert_eq!(Solution::contains_duplicate(nums), true);
+}
+```
+
 # InterviewBit
 
 ## SQL
