@@ -871,6 +871,30 @@ WHERE LENGTH(T.content) > 15;
 
 ## Rust
 
+### 70. Climbing Stairs
+
+#### Fibonacci Number Solution
+
+```rust
+impl Solution {
+    pub fn climb_stairs(n: i32) -> i32 {
+        if (n == 1) {
+            return 1;
+        }
+        let mut first: i32 = 1;
+        let mut second: i32 = 2;
+        let mut count: i32 = 3;
+        while (count <= n) {
+            let third: i32 = first + second;
+            first = second;
+            second = third;
+            count += 1;
+        }
+        second
+    }
+}
+```
+
 ### 136. Single Number
 
 ```rust
