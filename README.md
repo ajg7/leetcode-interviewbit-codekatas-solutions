@@ -871,6 +871,31 @@ WHERE LENGTH(T.content) > 15;
 
 ## Rust
 
+### 448. Find All Numbers Disappeared in an Array
+
+```rust
+use std::collections::HashSet;
+
+impl Solution {
+    pub fn find_disappeared_numbers(nums: Vec<i32>) -> Vec<i32> {
+        let mut result: Vec<i32> = Vec::new();
+        let mut numbers: HashSet<i32> = HashSet::new();
+        let mut counter: i32 = 1;
+        let length: usize = nums.len();
+        for num in nums {
+            numbers.insert(num);
+        }
+        while counter <= length as i32 {
+            if !numbers.contains(&counter) {
+                result.push(counter);
+            }
+            counter += 1;
+        }
+        result
+    }
+}
+```
+
 ### 268. Missing Number
 
 ```rust
