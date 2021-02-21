@@ -871,6 +871,21 @@ WHERE LENGTH(T.content) > 15;
 
 ## Rust
 
+### 136. Single Number
+
+```rust
+impl Solution {
+    pub fn single_number(nums: Vec<i32>) -> i32 {
+        let mut singleNumber: i32 = 0;
+        for num in nums {
+            singleNumber ^= num;
+        }
+
+        singleNumber
+    }
+}
+```
+
 ### 448. Find All Numbers Disappeared in an Array
 
 ```rust
