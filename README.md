@@ -474,6 +474,25 @@ const deleteDuplicates = head => {
 };
 ```
 
+```typescript
+const deleteDuplicates = (head: ListNode | null): ListNode | null => {
+	if (!head || !head.next) return head;
+	let prev = head;
+	let forward = head.next;
+	while (forward) {
+		if (forward.val === prev.val) {
+			prev.next = forward.next;
+			forward = forward.next;
+		} else {
+			prev = forward;
+			forward = forward.next;
+		}
+	}
+
+	return head;
+};
+```
+
 ### 203. Remove Linked List Elements
 
 ```javascript
