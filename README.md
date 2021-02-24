@@ -340,16 +340,16 @@ const hasCycle = head => {
 
 ```typescript
 const hasCycle = (head: ListNode | null): boolean => {
-    let tortoise: ListNode = head;
-    let hare: ListNode = head;
-    
-    while (hare && hare.next) {
-        hare = hare.next.next;
-        tortoise = tortoise.next;
-        if (hare === tortoise) return true;
-    }
-    
-    return false;
+	let tortoise: ListNode = head;
+	let hare: ListNode = head;
+
+	while (hare && hare.next) {
+		hare = hare.next.next;
+		tortoise = tortoise.next;
+		if (hare === tortoise) return true;
+	}
+
+	return false;
 };
 ```
 
@@ -534,6 +534,20 @@ const middleNode = head => {
 		slow = slow.next;
 	}
 	return slow;
+};
+```
+
+```typescript
+const middleNode = (head: ListNode | null): ListNode | null => {
+	let hare: ListNode = head;
+	let tortoise: ListNode = head;
+
+	while (hare && hare.next) {
+		hare = hare.next.next;
+		tortoise = tortoise.next;
+	}
+
+	return tortoise;
 };
 ```
 
