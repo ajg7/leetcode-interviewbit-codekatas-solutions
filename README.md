@@ -495,6 +495,25 @@ const removeElements = (head, val) => {
 };
 ```
 
+```typescript
+const removeElements = (head: ListNode | null, val: number): ListNode | null => {
+	const dummy = new ListNode(NaN);
+	dummy.next = head;
+
+	let current = dummy;
+	while (current && current.next) {
+		const next = current.next;
+		if (next.val === val) {
+			current.next = current.next.next;
+		} else {
+			current = current.next;
+		}
+	}
+
+	return dummy.next;
+};
+```
+
 ### 206. Reverse a Linked List
 
 ```javascript
