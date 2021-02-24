@@ -30,6 +30,25 @@ const findJudge = (N, trust) => {
 
 ## Dynamic Programming
 
+### 53. Maximum Subarray
+
+#### Kadane's Alogrithm
+
+```typescript
+const maxSubArray = (nums: number[]): number => {
+	let maxSum: number = nums[0];
+
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i - 1] > 0) {
+			nums[i] += nums[i - 1];
+		}
+		maxSum = Math.max(nums[i], maxSum);
+	}
+
+	return maxSum;
+};
+```
+
 ### 121. Best Time to Buy and Sell Stock
 
 ```typescript
