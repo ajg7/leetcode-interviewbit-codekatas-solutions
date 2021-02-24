@@ -30,6 +30,12 @@ const findJudge = (N, trust) => {
 
 ## Dynamic Programming
 
+### 303. Range Sum Query - Immutable
+
+```javascript
+
+```
+
 ### 53. Maximum Subarray
 
 #### Kadane's Alogrithm
@@ -329,6 +335,21 @@ const hasCycle = head => {
 		if (slow === fast) return true;
 	}
 	return false;
+};
+```
+
+```typescript
+const hasCycle = (head: ListNode | null): boolean => {
+    let tortoise: ListNode = head;
+    let hare: ListNode = head;
+    
+    while (hare && hare.next) {
+        hare = hare.next.next;
+        tortoise = tortoise.next;
+        if (hare === tortoise) return true;
+    }
+    
+    return false;
 };
 ```
 
