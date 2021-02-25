@@ -699,6 +699,26 @@ const getDecimalValue = head => {
 
 ## Binary Search
 
+### 704. Binary Search
+
+```typescript
+const search = (nums: number[], target: number): number => {
+	let left: number = 0;
+	let right: number = nums.length;
+
+	while (left < right) {
+		let mid: number = Math.floor((left + right) / 2);
+		if (nums[mid] < target) {
+			left = mid + 1;
+		} else {
+			right = mid;
+		}
+	}
+
+	return nums[left] === target ? left : -1;
+};
+```
+
 ### 1351. Count Negative Numbers in a Sorted Matrix
 
 ```javascript
