@@ -223,6 +223,37 @@ const rangeSumBST = (root, low, high) => {
 
 ## Linked Lists
 
+### 21. Merge Two Sorted Lists
+
+```typescript
+const mergeTwoLists = (l1: ListNode | null, l2: ListNode | null): ListNode | null => {
+	let dummy = new ListNode(NaN);
+	let curr = dummy;
+
+	while (l1 && l2) {
+		if (l1.val < l2.val) {
+			curr.next = l1;
+			l1 = l1.next;
+		} else {
+			curr.next = l2;
+			l2 = l2.next;
+		}
+
+		curr = curr.next;
+	}
+
+	if (l1) {
+		curr.next = l1;
+	}
+
+	if (l2) {
+		curr.next = l2;
+	}
+
+	return dummy.next;
+};
+```
+
 ### 328. Odd Even Linked List
 
 ```javascript
@@ -454,6 +485,55 @@ const copy = head => {
 	}
 
 	return copyHead;
+};
+```
+
+```typescript
+const isPalindrome = (head: ListNode | null): boolean => {
+	const copyHead = copyList(head);
+	const reverseCopyHead = reverse(copyHead);
+	return isEqual(head, reverseCopyHead);
+};
+
+const isEqual = (list1: ListNode | null, list2: ListNode | null): boolean => {
+	while (list1 && list2) {
+		if (list1.val !== list2.val) {
+			return false;
+		}
+
+		list1 = list1.next;
+		list2 = list2.next;
+	}
+
+	return !list1 && !list2;
+};
+
+const reverse = (node: ListNode | null): ListNode => {
+	let curr = node;
+	let prev = null;
+	let next = null;
+
+	while (curr) {
+		next = curr.next;
+		curr.next = prev;
+		prev = curr;
+		curr = next;
+	}
+
+	return prev;
+};
+
+const copyList = (node: ListNode | null): ListNode => {
+	let curr = node;
+	let dummy = new ListNode(NaN);
+	let prev = dummy;
+	while (curr) {
+		const copy = new ListNode(curr.val);
+		prev.next = copy;
+		prev = prev.next;
+		curr = curr.next;
+	}
+	return dummy.next;
 };
 ```
 
