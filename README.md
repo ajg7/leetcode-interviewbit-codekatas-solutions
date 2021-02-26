@@ -699,6 +699,26 @@ const getDecimalValue = head => {
 
 ## Binary Search
 
+### 744. Find Smallest Letter Greater Than Target
+
+```typescript
+const nextGreatestLetter = (letters: string[], target: string): string => {
+	let left: number = 0;
+	let right: number = letters.length - 1;
+
+	while (left < right) {
+		let mid: number = Math.floor((left + right) / 2);
+		if (letters[mid] <= target) {
+			left = mid + 1;
+		} else {
+			right = mid;
+		}
+	}
+
+	return letters[left] <= target ? letters[0] : letters[left];
+};
+```
+
 ### 704. Binary Search
 
 ```typescript
