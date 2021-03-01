@@ -699,6 +699,27 @@ const getDecimalValue = head => {
 
 ## Binary Search
 
+### 374. Guess Number Higher or Lower
+
+```javascript
+const guessNumber = n => {
+	let left = 1;
+	let right = n;
+	while (left <= right) {
+		const mid = Math.floor((right - left) / 2) + left;
+		const result = guess(mid);
+
+		if (result === 0) {
+			return mid;
+		} else if (result === 1) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}
+};
+```
+
 ### 69. Sqrt(x)
 
 ```typescript
