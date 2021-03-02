@@ -159,7 +159,22 @@ const twoSum = (nums, target) => {
 };
 ```
 
-## Trees
+## Binary Search Trees
+
+### 98. Validate Binary Search Trees
+
+```typescript
+const isValidBST = (root: TreeNode | null): boolean => {
+	const validate = (root: TreeNode | null, low: number, high: number): boolean => {
+		if (!root) return true;
+		if ((low !== null && root.val <= low) || (high !== null && root.val >= high)) return false;
+
+		return validate(root.right, root.val, high) && validate(root.left, low, root.val);
+	};
+
+	return validate(root, null, null);
+};
+```
 
 ### 111. Minimum Depth of Binary Tree (BFS)
 
