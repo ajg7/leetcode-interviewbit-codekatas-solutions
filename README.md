@@ -971,7 +971,15 @@ const duplicateZeros = arr => {
 };
 ```
 
-## SQL
+## SQL (Leetcode)
+
+## 1667. Fix Names in a Table
+
+```sql
+SELECT user_id, CONCAT(upper(left(name, 1)), lower(substring(name, 2))) AS name
+FROM users
+ORDER BY user_id;
+```
 
 ### 607. Sales Person
 
@@ -1401,7 +1409,7 @@ fn test() {
 
 # InterviewBit
 
-## SQL
+## SQL (InterviewBit)
 
 ### Actors and Their Movies
 
