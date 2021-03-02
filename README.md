@@ -161,6 +161,28 @@ const twoSum = (nums, target) => {
 
 ## Binary Search Trees
 
+### 637. Average of Levels in Binary Tree
+
+```javascript
+const averageOfLevels = root => {
+	const numbers = [];
+	const queue = [];
+	if (root) queue.push(root);
+	while (queue.length !== 0) {
+		let sum = 0;
+		let queueLength = queue.length;
+		for (let i = 0; i < queueLength; i++) {
+			let currentNode = queue.shift();
+			sum += currentNode.val;
+			if (currentNode.left !== null) queue.push(currentNode.left);
+			if (currentNode.right !== null) queue.push(currentNode.right);
+		}
+		numbers.push(sum / queueLength);
+	}
+	return numbers;
+};
+```
+
 ### 98. Validate Binary Search Trees
 
 ```typescript
