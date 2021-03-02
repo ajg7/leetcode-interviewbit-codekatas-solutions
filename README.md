@@ -976,7 +976,7 @@ const duplicateZeros = arr => {
 ## 1667. Fix Names in a Table
 
 ```sql
-SELECT user_id, CONCAT(upper(left(name, 1)), lower(substring(name, 2))) AS name
+SELECT user_id, CONCAT(UPPER(LEFT(name, 1)), LOWER(SUBSTRING(name, 2))) AS name
 FROM users
 ORDER BY user_id;
 ```
