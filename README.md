@@ -916,6 +916,20 @@ const duplicateZeros = arr => {
 
 ## SQL
 
+### 607. Sales Person
+
+```sql
+SELECT S.name
+FROM salesperson AS S
+WHERE S.sales_id NOT IN (
+    SELECT O.sales_id
+    FROM orders AS O
+    LEFT JOIN company AS C
+    ON O.com_id = C.com_id
+    WHERE c.name = 'RED'
+);
+```
+
 ### 613. Shortest Distance in a Line
 
 ```sql
