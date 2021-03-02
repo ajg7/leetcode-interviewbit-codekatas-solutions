@@ -699,6 +699,26 @@ const getDecimalValue = head => {
 
 ## Binary Search
 
+### 852. Peak Index in a Mountain Array
+
+```typescript
+const peakIndexInMountainArray = (arr: number[]): number => {
+	let low: number = 0;
+	let high: number = arr.length - 1;
+
+	while (low < high) {
+		let mid: number = Math.floor(low + (high - low) / 2);
+
+		if (arr[mid] < arr[mid + 1]) {
+			low = mid + 1;
+		} else {
+			high = mid;
+		}
+	}
+	return low;
+};
+```
+
 ### 33. Search in Rotated Sorted Array
 
 ```typescript
