@@ -699,6 +699,36 @@ const getDecimalValue = head => {
 
 ## Binary Search
 
+### 33. Search in Rotated Sorted Array
+
+```typescript
+const search = (nums: number[], target: number): number => {
+	let start: number = 0;
+	let end: number = nums.length - 1;
+
+	while (start <= end) {
+		let mid = Math.floor(start + (end - start) / 2);
+
+		if (nums[mid] === target) {
+			return mid;
+		} else if (nums[mid] >= nums[start]) {
+			if (target >= nums[start] && target < nums[mid]) {
+				end = mid - 1;
+			} else {
+				start = mid + 1;
+			}
+		} else {
+			if (target <= nums[end] && target > nums[mid]) {
+				start = mid + 1;
+			} else {
+				end = mid - 1;
+			}
+		}
+	}
+	return -1;
+};
+```
+
 ### 374. Guess Number Higher or Lower
 
 ```javascript
