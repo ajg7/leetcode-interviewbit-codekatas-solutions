@@ -161,6 +161,17 @@ const twoSum = (nums, target) => {
 
 ## Binary Search Trees
 
+### 100. Same Tree
+
+```javascript
+const isSameTree = (p, q) => {
+	if (!p && !q) return true;
+	if (!p || !q) return false;
+	if (p.val !== q.val) return false;
+	return isSameTree(p.right, q.right) && isSameTree(p.left, q.left);
+};
+```
+
 ### 637. Average of Levels in Binary Tree
 
 ```javascript
