@@ -161,6 +161,17 @@ const twoSum = (nums, target) => {
 
 ## Binary Search Trees
 
+### 112. Path Sum
+
+```javascript
+const hasPathSum = (root, targetSum) => {
+	if (!root) return false;
+	targetSum -= root.val;
+	if (!root.left && !root.right) return targetSum === 0;
+	return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
+};
+```
+
 ### 100. Same Tree
 
 ```javascript
