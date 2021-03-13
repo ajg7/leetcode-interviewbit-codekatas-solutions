@@ -161,6 +161,27 @@ const twoSum = (nums, target) => {
 
 ## Binary Search Trees
 
+### 543. Diameter of Binary Tree
+
+```javascript
+const diameterOfBinaryTree = root => {
+	let diameter = 0;
+
+	const longestPath = node => {
+		if (!node) return 0;
+		let left = longestPath(node.left);
+		let right = longestPath(node.right);
+
+		diameter = Math.max(diameter, left + right);
+
+		return Math.max(left, right) + 1;
+	};
+
+	longestPath(root);
+	return diameter;
+};
+```
+
 ### 617. Merge Two Binary Trees
 
 ```javascript
@@ -1008,7 +1029,21 @@ const duplicateZeros = arr => {
 
 ## SQL (Leetcode)
 
-## 1667. Fix Names in a Table
+### 597. Friend Requests I: Overall Acceptance Rate
+
+```sql
+# Write your MySQL query statement below
+SELECT
+ROUND(
+    IFNULL(
+        (SELECT COUNT(*) FROM (SELECT DISTINCT requester_id, accepter_id FROM RequestAccepted) AS RA)
+        /
+        (SELECT COUNT(*) FROM (SELECT DISTINCT sender_id, send_to_id FROM FriendRequest) AS FR),
+    0), 2
+) AS accept_rate;
+```
+
+### 1667. Fix Names in a Table
 
 ```sql
 SELECT user_id, CONCAT(UPPER(LEFT(name, 1)), LOWER(SUBSTRING(name, 2))) AS name
