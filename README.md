@@ -1058,6 +1058,15 @@ const duplicateZeros = arr => {
 
 ## SQL (Leetcode)
 
+### 1378. Replace Employee ID with the Unique Identifier
+
+```sql
+SELECT UNI.unique_id, E.name
+FROM Employees AS E
+LEFT JOIN EmployeeUNI AS UNI
+ON UNI.id = E.id;
+```
+
 ### 597. Friend Requests I: Overall Acceptance Rate
 
 ```sql
