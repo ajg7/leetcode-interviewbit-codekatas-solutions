@@ -161,6 +161,24 @@ const twoSum = (nums, target) => {
 
 ## Binary Search Trees
 
+### 235. Lowest Common Ancestor of a Binary Search Tree
+
+```javascript
+const lowestCommonAncestor = (root, p, q) => {
+	let parent = root.val;
+	let pVal = p.val;
+	let qVal = q.val;
+
+	if (pVal > parent && qVal > parent) {
+		return lowestCommonAncestor(root.right, p, q);
+	} else if (pVal < parent && qVal < parent) {
+		return lowestCommonAncestor(root.left, p, q);
+	} else {
+		return root;
+	}
+};
+```
+
 ### 543. Diameter of Binary Tree
 
 ```javascript
@@ -277,6 +295,17 @@ const maxDepth = root => {
 		return Math.max(leftSide, rightSide);
 	};
 	return checkDepth(root, 0);
+};
+```
+
+#### Shorter Version
+
+```javascript
+const maxDepth = root => {
+	if (!root) return 0;
+	const left = maxDepth(root.left);
+	const right = maxDepth(root.right);
+	return Math.max(left, right) + 1;
 };
 ```
 
@@ -721,7 +750,7 @@ const removeElements = (head: ListNode | null, val: number): ListNode | null => 
 };
 ```
 
-### 206. Reverse a Linked List
+### 206. Reverse Linked List
 
 ```javascript
 const reverseList = head => {
