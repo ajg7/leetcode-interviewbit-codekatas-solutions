@@ -397,6 +397,22 @@ const canAttendMeetings = (intervals: number[][]): boolean => {
 
 ## Pointers
 
+### 844. Backspace String Compare
+
+```javascript
+const backspaceCompare = (S, T) => {
+	const check = string => {
+		const stack = [];
+		for (const s of string) {
+			if (s !== "#") stack.push(s);
+			else if (stack.length !== 0) stack.pop();
+		}
+		return stack.join("");
+	};
+	return check(S) === check(T);
+};
+```
+
 ### 977. Squares of a Sorted Array
 
 ```javascript
