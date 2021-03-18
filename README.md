@@ -161,6 +161,20 @@ const twoSum = (nums, target) => {
 
 ## Binary Search Trees
 
+### 226. Invert Binary Tree
+
+```javascript
+const invertTree = root => {
+	if (!root) return null;
+
+	let right = invertTree(root.right);
+	let left = invertTree(root.left);
+	root.right = left;
+	root.left = right;
+	return root;
+};
+```
+
 ### 572. Subtree of Another Tree
 
 ```javascript
