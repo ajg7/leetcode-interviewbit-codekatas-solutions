@@ -161,6 +161,29 @@ const twoSum = (nums, target) => {
 
 ## Binary Search Trees
 
+### 572. Subtree of Another Tree
+
+```javascript
+const isSubtree = (s, t) => {
+	const set = new Set();
+
+	const preorder = (t, left) => {
+		if (!t) {
+			if (left) {
+				return "lnull";
+			} else {
+				return "rnull";
+			}
+		}
+		return `#${t.val} ${preorder(t.left, true)} ${preorder(t.right, false)}`;
+	};
+
+	let tree1 = preorder(s, true);
+	let tree2 = preorder(t, true);
+	return tree1.indexOf(tree2) >= 0;
+};
+```
+
 ### 235. Lowest Common Ancestor of a Binary Search Tree
 
 ```javascript
