@@ -397,6 +397,30 @@ const canAttendMeetings = (intervals: number[][]): boolean => {
 
 ## Pointers
 
+### 977. Squares of a Sorted Array
+
+```javascript
+const sortedSquares = nums => {
+	let length = nums.length;
+	let result = new Array(length);
+	let left = 0;
+	let right = length - 1;
+
+	for (let i = length - 1; i >= 0; i--) {
+		let square;
+		if (Math.abs(nums[left]) < Math.abs(nums[right])) {
+			square = nums[right];
+			right--;
+		} else {
+			square = nums[left];
+			left++;
+		}
+		result[i] = square * square;
+	}
+	return result;
+};
+```
+
 ### 1. Two Sum
 
 ```javascript
