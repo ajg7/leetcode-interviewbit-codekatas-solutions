@@ -30,6 +30,54 @@ const findJudge = (N, trust) => {
 
 ## Tries
 
+### 208. Implement Trie (Prefix Tree)
+
+```javascript
+class TrieNode {
+	constructor(key) {
+		this.key = key;
+		this.children = {};
+		this.isEnd = false;
+	}
+}
+
+class Trie {
+	constructor(words) {
+		this.root = new TrieNode();
+	}
+
+	insert(word) {
+		let node = this.root;
+		for (const char of word) {
+			if (!node.children[char]) {
+				node.children[char] = new TrieNode(char);
+			}
+			node = node.children[char];
+		}
+		node.isEnd = true;
+	}
+
+	search(word) {
+		let currentNode = this.root;
+		for (const char of word) {
+			if (!currentNode.children[char]) return false;
+			currentNode = currentNode.children[char];
+		}
+
+		return currentNode.isEnd;
+	}
+
+	startsWith(prefix) {
+		let currentNode = this.root;
+		for (const char of prefix) {
+			if (!currentNode.children[char]) return false;
+			currentNode = currentNode.children[char];
+		}
+		return true;
+	}
+}
+```
+
 ### 720. Longest Word in the Dictionary
 
 ```javascript
