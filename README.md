@@ -168,7 +168,21 @@ const longestWord = words => {
 ### 303. Range Sum Query - Immutable
 
 ```javascript
+class NumArray {
+	constructor(nums) {
+		this.nums = nums;
+		this.prefix = nums.reduce((accumulator, num) => {
+			let last = accumulator[accumulator.length - 1] || 0;
+			accumulator.push(last + num);
+			return accumulator;
+		}, []);
+	}
 
+	sumRange(i, j) {
+		if (i === 0) return this.prefix[j];
+		return this.prefix[j] - this.prefix[i - 1];
+	}
+}
 ```
 
 ### 53. Maximum Subarray
@@ -722,19 +736,6 @@ const detectCycle = head => {
 ```
 
 ### 141. Linked List Cycle
-
-```javascript
-const hasCycle = head => {
-	let slow = head;
-	let fast = head;
-	while (fast && fast.next) {
-		slow = slow.next;
-		fast = fast.next.next;
-		if (slow === fast) return true;
-	}
-	return false;
-};
-```
 
 ```typescript
 const hasCycle = (head: ListNode | null): boolean => {
