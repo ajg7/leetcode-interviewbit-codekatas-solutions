@@ -7,8 +7,8 @@ public class Solution {
         foreach (int num in nums) {
             res ^= num;
         }
-        
-        for(int i = 0; i < nums.Length + 1; i++) {
+
+        for (int i = 0; i < nums.Length + 1; i++) {
             res ^= i;
         }
     return res;
