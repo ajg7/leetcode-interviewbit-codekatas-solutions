@@ -38,3 +38,27 @@ public class Solution {
     }
 }
 ```
+
+## 897. Increasing Order Search Tree
+```csharp
+public class Solution {
+    public TreeNode IncreasingBST(TreeNode root) {
+        List<int> list = new List<int>();
+        inorder(root, list);
+        TreeNode result = new TreeNode(list[0]);
+        TreeNode ans = result;
+        for (int i = 1; i < list.Count(); i++) {
+            ans.right = new TreeNode(list[i]);
+            ans = ans.right;
+        }
+        return result;
+    }
+    
+    private void inorder(TreeNode node, List<int> list) {
+        if (node == null) return;
+        inorder(node.left, list);
+        list.Add(node.val);
+        inorder(node.right, list);
+    }
+}
+```
