@@ -40,6 +40,7 @@ public class Solution {
 ```
 
 ## 897. Increasing Order Search Tree
+
 ```csharp
 public class Solution {
     public TreeNode IncreasingBST(TreeNode root) {
@@ -53,12 +54,32 @@ public class Solution {
         }
         return result;
     }
-    
+
     private void inorder(TreeNode node, List<int> list) {
         if (node == null) return;
         inorder(node.left, list);
         list.Add(node.val);
         inorder(node.right, list);
+    }
+}
+```
+
+589. N-ary Tree Preorder Traversal
+
+```csharp
+public class Solution {
+    public IList<int> Preorder(Node root) {
+        IList<int> nodes = new List<int>();
+        preOrderWalk(root, nodes);
+        return nodes;
+    }
+
+    public void preOrderWalk(Node root, IList<int> nodes) {
+        if (root == null) return;
+        nodes.Add(root.val);
+        foreach(Node node in root.children) {
+            preOrderWalk(node, nodes);
+        }
     }
 }
 ```
