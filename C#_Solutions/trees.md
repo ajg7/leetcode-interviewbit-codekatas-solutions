@@ -41,16 +41,25 @@ public class Solution {
 
 ## 897. Increasing Order Search Tree
 
+### Brief Explanation
+
+    We first need a make a list, which holds all of the tree values
+    Then we recursively add them, first checking the root node, then their left and right children respectively
+
 ```csharp
 public class Solution {
     public TreeNode IncreasingBST(TreeNode root) {
         List<int> list = new List<int>();
         inorder(root, list);
         TreeNode result = new TreeNode(list[0]);
-        TreeNode ans = result;
-        for (int i = 1; i < list.Count(); i++) {
-            ans.right = new TreeNode(list[i]);
-            ans = ans.right;
+        TreeNode answer = result;
+
+        foreach (int val in list) {
+            if (val == list[0]) continue;
+            else {
+                answer.right = new TreeNode(val);
+                answer = answer.right;
+            }
         }
         return result;
     }
@@ -64,7 +73,13 @@ public class Solution {
 }
 ```
 
-589. N-ary Tree Preorder Traversal
+## 589. N-ary Tree Preorder Traversal
+
+### Brief Explanation
+
+    In preorder traversal, first you visit the node, then its left and then its right child.
+    We first check the top node, then recursively move to the left, check it out then move the left
+    Check it out, then go back up and check the previous right node, check it, then back up so on and so forth
 
 ```csharp
 public class Solution {
@@ -79,6 +94,33 @@ public class Solution {
         nodes.Add(root.val);
         foreach(Node node in root.children) {
             preOrderWalk(node, nodes);
+        }
+    }
+}
+```
+
+## 590. N-ary Tree Postorder Traversal
+
+```csharp
+public class Solution {
+    public IList<int> Postorder(Node root) {
+        if(root == null){
+            return new List<int>();
+        }
+        List<int> nodes = new List<int>();
+        Postorder(root, nodes);
+        nodes.Add(root.val);
+        return nodes;
+    }
+
+    private void Postorder(Node root, IList<int> nodes) {
+        if(root == null){
+            return;
+        }
+
+        foreach(Node node in root.children){
+            Postorder(node, nodes);
+            nodes.Add(node.val);
         }
     }
 }
