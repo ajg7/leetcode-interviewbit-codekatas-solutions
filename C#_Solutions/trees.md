@@ -1,5 +1,12 @@
 ## 938. Range Sum of BST
 
+### Brief Explanation
+
+    In BST left nodes are lower than the root node & right nodes are higher than the root node.
+    1. After the base case, we check to see if the node is less than the low (left), if it is then, it checks its right node
+    2. If that node is not less than the low, then we check to see if it is higher than the high (right), it is then, it checks its left node
+    3. Finally add the results of the recursive calls and return it
+
 ```csharp
 /**
  * Definition for a binary tree node.
@@ -25,6 +32,13 @@ public class Solution {
 ```
 
 ## 617. Merge Two Binary Trees
+
+### Brief Explanation
+    First we see if the nodes of both trees is null, if it is then just return the one that has a value.
+    However if they both have a value, then we need to add both of those and assign that sum to root1.val (root1 is going to be our new tree)
+    Traverse down the lefts of both trees
+    Then Traverse down the rights of both trees
+    Return root1
 
 ```csharp
 public class Solution {
@@ -104,22 +118,17 @@ public class Solution {
 ```csharp
 public class Solution {
     public IList<int> Postorder(Node root) {
-        if(root == null){
-            return new List<int>();
-        }
-        List<int> nodes = new List<int>();
-        Postorder(root, nodes);
+        IList<int> nodes = new List<int>();
+        if (root == null) return nodes;
+        postorderWalk(root, nodes);
         nodes.Add(root.val);
         return nodes;
     }
-
-    private void Postorder(Node root, IList<int> nodes) {
-        if(root == null){
-            return;
-        }
-
-        foreach(Node node in root.children){
-            Postorder(node, nodes);
+    
+    public void postorderWalk(Node root, IList<int> nodes) {
+        if (root == null) return;
+        foreach (Node node in root.children) {
+            postorderWalk(node, nodes);
             nodes.Add(node.val);
         }
     }
