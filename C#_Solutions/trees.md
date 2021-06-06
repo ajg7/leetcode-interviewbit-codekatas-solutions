@@ -34,6 +34,7 @@ public class Solution {
 ## 617. Merge Two Binary Trees
 
 ### Brief Explanation
+
     First we see if the nodes of both trees is null, if it is then just return the one that has a value.
     However if they both have a value, then we need to add both of those and assign that sum to root1.val (root1 is going to be our new tree)
     Traverse down the lefts of both trees
@@ -69,7 +70,7 @@ public class Solution {
     public TreeNode IncreasingBST(TreeNode root) {
         return inorder(root, null);
     }
-    
+
     public TreeNode inorder(TreeNode root, TreeNode tail) {
         if (root == null) return tail;
         TreeNode result = inorder(root.left, root);
@@ -117,13 +118,61 @@ public class Solution {
         nodes.Add(root.val);
         return nodes;
     }
-    
+
     public void postorderWalk(Node root, IList<int> nodes) {
         if (root == null) return;
         foreach (Node node in root.children) {
             postorderWalk(node, nodes);
             nodes.Add(node.val);
         }
+    }
+}
+```
+
+## 700. Search in a Binary Search Tree
+
+### Brief Explanation
+
+    If the root is null, then return the node (root)
+    if the root's value is equal to the value then return the node (which contains its left and right subtrees);
+    If the val is less than the root's val, then go to the left side
+    If the val is more than the root's val, then go to the right side
+    If we make it all the way and haven't found the val node, then just return null
+
+    * Remember this property root.left < root < root.right
+
+```csharp
+public class Solution {
+    public TreeNode SearchBST(TreeNode root, int val) {
+        if (root == null) return root;
+        if (root.val == val) return root;
+        else if (root.val > val) return SearchBST(root.left, val);
+        else if (root.val < val) return SearchBST(root.right, val);
+        return null;
+    }
+}
+```
+
+## 1022. Sum of Root To Leaf Binary Numbers
+
+### Brief Explanation
+
+    This is a Depth-First Search Solution
+    We need make a path from root to leaf, and convert the resulting binary into an integer
+    We do this by multipling the val by 2, adding the root's val, and then assigning the result into val
+        Therefore val will transform into the int
+    If both the left and right are equal then just the val, else run dfs again on both the left and right
+
+```csharp
+public class Solution {
+    public int SumRootToLeaf(TreeNode root) {
+        return dfs(root, 0);
+    }
+
+    public int dfs(TreeNode root, int val) {
+        if (root == null) return 0;
+        val = val * 2 + root.val;
+        return root.left == root.right ? val : dfs(root.left, val) + dfs(root.right, val);
     }
 }
 ```
