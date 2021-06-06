@@ -57,32 +57,25 @@ public class Solution {
 
 ### Brief Explanation
 
-    We first need a make a list, which holds all of the tree values
-    Then we recursively add them, first checking the root node, then their left and right children respectively
+    Recursively call inorder with tail being the next node in the inorder
+    If the root is null then we return the tail directly
+    By recursively calling the root.left, we are changing the left subtree into the linked list + current node
+    By recursively calling the root.right, we are chaging the right subtree into the linked list + tail
+    The result is the linked list with right child being the next node, which is why we set the left to null
+    Result will be inorder(root.left) -> root -> inorder(root.right)
 
 ```csharp
 public class Solution {
     public TreeNode IncreasingBST(TreeNode root) {
-        List<int> list = new List<int>();
-        inorder(root, list);
-        TreeNode result = new TreeNode(list[0]);
-        TreeNode answer = result;
-
-        foreach (int val in list) {
-            if (val == list[0]) continue;
-            else {
-                answer.right = new TreeNode(val);
-                answer = answer.right;
-            }
-        }
-        return result;
+        return inorder(root, null);
     }
-
-    private void inorder(TreeNode node, List<int> list) {
-        if (node == null) return;
-        inorder(node.left, list);
-        list.Add(node.val);
-        inorder(node.right, list);
+    
+    public TreeNode inorder(TreeNode root, TreeNode tail) {
+        if (root == null) return tail;
+        TreeNode result = inorder(root.left, root);
+        root.left = null;
+        root.right = inorder(root.right, tail);
+        return result;
     }
 }
 ```
