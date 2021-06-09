@@ -176,3 +176,24 @@ public class Solution {
     }
 }
 ```
+
+## 559. Maximum Depth of N-ary Tree
+
+```csharp
+public class Solution {
+    public int MaxDepth(Node root) {
+        if (root == null) return 0;
+        return MaxDepthFunc(root);
+    }
+
+    public int MaxDepthFunc(Node root, int max = 1, int level = 1)
+    {
+        max = Math.Max(max, level);
+
+        foreach (Node node in root.children){
+            max = Math.Max(MaxDepthFunc(node, max, level + 1), max);
+        }
+        return max;
+    }
+}
+```
