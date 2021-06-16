@@ -197,3 +197,18 @@ public class Solution {
     }
 }
 ```
+
+## 104. Maximum Depth of Binary Tree
+
+```csharp
+public class Solution {
+    public int MaxDepth(TreeNode root) {
+        int left, right, result;
+        if (root == null) return 0;
+        left = MaxDepth(root.left) + 1;
+        right = MaxDepth(root.right) + 1;
+        result = Math.Max(left, right);
+        return result;
+    }
+}
+```
