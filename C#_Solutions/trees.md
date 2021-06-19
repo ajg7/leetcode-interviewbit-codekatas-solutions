@@ -247,3 +247,48 @@ public class Solution {
     }
 }
 ```
+
+## 94. Binary Tree Inorder Traversal
+
+```csharp
+public class Solution {
+    public IList<int> InorderTraversal(TreeNode root) {
+        IList<int> nodes = new List<int>();
+        inorderHelper(nodes, root);
+        return nodes;
+    }
+
+    public void inorderHelper(IList<int> nodes, TreeNode root) {
+        if (root == null) return;
+        inorderHelper(nodes, root.left);
+        nodes.Add(root.val);
+        inorderHelper(nodes, root.right);
+    }
+}
+```
+
+## 637. Average of Levels in Binary Tree
+
+```csharp
+public class Solution {
+    public IList<double> AverageOfLevels(TreeNode root) {
+        IList<double> list = new List<double>();
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(root);
+        while(queue.Count != 0) {
+            long sum = 0, count = 0;
+            Queue<TreeNode> temp = new Queue<TreeNode>();
+            while (queue.Count != 0) {
+                TreeNode n = queue.Dequeue();
+                sum += n.val;
+                count++;
+                if (n.left != null) temp.Enqueue(n.left);
+                if (n.right != null) temp.Enqueue(n.right);
+            }
+            queue = temp;
+            list.Add(sum * 1.0 / count);
+        }
+        return list;
+    }
+}
+```
