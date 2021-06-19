@@ -212,3 +212,38 @@ public class Solution {
     }
 }
 ```
+
+## 226. Invert Binary Tree
+
+```csharp
+public class Solution {
+    public TreeNode InvertTree(TreeNode root) {
+        if (root == null) return null;
+
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        root.right = this.InvertTree(left);
+        root.left = this.InvertTree(right);
+
+        return root;
+    }
+}
+```
+
+## 965. Univalued Binary Tree
+
+```csharp
+public class Solution {
+    public bool IsUnivalTree(TreeNode root) {
+        return search(root, root.val);
+    }
+
+    public bool search(TreeNode root, int val) {
+        if (root == null) return true;
+
+        if (root.val == val) {
+            return search(root.left, val) && search(root.right, val);
+        } else return false;
+    }
+}
+```
