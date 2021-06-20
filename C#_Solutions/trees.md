@@ -292,3 +292,39 @@ public class Solution {
     }
 }
 ```
+
+## 872. Leaf-Similar Trees
+
+```csharp
+public class Solution {
+    public bool LeafSimilar(TreeNode root1, TreeNode root2) {
+        if(root1 == null && root2 == null) return true;
+        if(root1 == null || root2 == null) return false;
+
+        List<TreeNode> list1 = new List<TreeNode>();
+        List<TreeNode> list2 = new List<TreeNode>();
+
+        InOrder(root1, list1);
+        InOrder(root2, list2);
+
+        if(list1.Count != list2.Count) return false;
+
+        for(int i = 0; i < list1.Count; i++)
+        {
+            if (list1[i].val != list2[i].val) return false;
+        }
+
+        return true;
+    }
+
+    private void InOrder(TreeNode root, List<TreeNode> list)
+    {
+        if (root != null)
+        {
+            InOrder(root.left,list);
+            if (root.left == null && root.right == null) list.Add(root);
+            InOrder(root.right,list);
+        }
+    }
+}
+```
