@@ -328,3 +328,61 @@ public class Solution {
     }
 }
 ```
+
+## 108. Convert Sorted Array to Binary Search Tree
+
+```csharp
+public class Solution {
+    public TreeNode SortedArrayToBST(int[] nums) {
+        if(nums.Length == 0) return null;
+        return getMid(nums, 0, nums.Length - 1);
+    }
+    public TreeNode getMid(int[] nums,int l,int r){
+        if(l > r) return null;
+        int mid = (l + r) / 2;
+        TreeNode tree = new TreeNode(nums[mid]);
+        tree.left = getMid(nums, l, mid - 1);
+        tree.right = getMid(nums, mid + 1, r);
+        return tree;
+    }
+}
+```
+
+## 144. Binary Tree Preorder Traversal
+
+```csharp
+public class Solution {
+    public IList<int> PreorderTraversal(TreeNode root) {
+        IList<int> nodes = new List<int>();
+        PreOrder(root, nodes);
+        return nodes;
+    }
+    private void PreOrder(TreeNode node, IList<int> nodes)
+    {
+        if (node == null) return;
+        nodes.Add(node.val);
+        PreOrder(node.left, nodes);
+        PreOrder(node.right, nodes);
+    }
+}
+```
+
+## 145. Binary Tree Postorder Traversal
+
+```csharp
+public class Solution {
+    public IList<int> PostorderTraversal(TreeNode root) {
+        IList<int> nodes = new List<int>();
+        PostOrder(root, nodes);
+        return nodes;
+    }
+
+    public void PostOrder(TreeNode node, IList<int> nodes)
+    {
+        if (node == null) return;
+        PostOrder(node.left, nodes);
+        PostOrder(node.right, nodes);
+        nodes.Add(node.val);
+    }
+}
+```
