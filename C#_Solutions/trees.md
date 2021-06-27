@@ -386,3 +386,34 @@ public class Solution {
     }
 }
 ```
+## 653. Two Sum IV - Input is a BST
+
+```csharp
+public class Solution {
+    public bool FindTarget(TreeNode root, int k) 
+    {
+        IList<int> nodes = new List<int>();
+        InOrder(root, nodes);
+        int right = nodes.Count() - 1;
+        int left = 0;
+        while (left < right) {
+            int sum = nodes[left] + nodes[right];
+
+            if (sum == k) return true;
+
+            if (sum > k) right--;
+            else left++;
+        }
+        
+        return false;
+    }
+    
+    public void InOrder(TreeNode root, IList<int> nodes)
+    {
+        if (root == null) return;
+        InOrder(root.left, nodes);
+        nodes.Add(root.val);
+        InOrder(root.right, nodes);
+    }
+}
+```
