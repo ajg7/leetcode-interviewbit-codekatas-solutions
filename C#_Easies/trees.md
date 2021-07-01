@@ -8,19 +8,6 @@
     3. Finally add the results of the recursive calls and return it
 
 ```csharp
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left;
- *     public TreeNode right;
- *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 public class Solution {
     public int RangeSumBST(TreeNode root, int low, int high) {
         if (root == null) return 0;
@@ -85,7 +72,7 @@ public class Solution {
 
 ### Brief Explanation
 
-    In preorder traversal, first you visit the node, then its left and then its right child.
+    In preorder traversal, first you visit the root node, then its left and then its right child.
     We first check the top node, then recursively move to the left, check it out then move the left
     Check it out, then go back up and check the previous right node, check it, then back up so on and so forth
 
@@ -414,6 +401,39 @@ public class Solution {
         InOrder(root.left, nodes);
         nodes.Add(root.val);
         InOrder(root.right, nodes);
+    }
+}
+```
+
+## 100. Same Tree
+
+```csharp
+public class Solution {
+    public bool IsSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+        else if (p == null || q == null || p.val != q.val) return false;
+        else
+        {
+            bool isLeftSameTree = IsSameTree(p.left , q.left);
+            bool isRightSameTree = IsSameTree(p.right , q.right);
+            return isLeftSameTree && isRightSameTree;
+        }
+    }
+}
+```
+
+## 235. Lowest Common Ancestor of a Binary Search Tree
+
+    Just walk down from the whole tree's root as long as both p and q are in the same subtree (meaning their values are both smaller or both larger than root's). This walks straight from the root to the LCA, not looking at the rest of the tree, so it's pretty much as fast as it gets. 
+
+```csharp
+public class Solution {
+    public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (p.val < root.val && root.val > q.val) return LowestCommonAncestor(root.left, p, q);
+
+        if (p.val > root.val && root.val < q.val) return LowestCommonAncestor(root.right, p, q);
+        
+        return root;
     }
 }
 ```
