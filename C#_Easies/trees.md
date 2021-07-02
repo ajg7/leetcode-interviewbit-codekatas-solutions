@@ -437,3 +437,29 @@ public class Solution {
     }
 }
 ```
+
+## 543. Diameter of Binary Tree
+
+```csharp
+public class Solution {
+    public int DiameterOfBinaryTree(TreeNode root) {
+        int max = 0;
+        
+        int _DiameterOfBinaryTree(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+
+            int left = _DiameterOfBinaryTree(root.left);
+            int right = _DiameterOfBinaryTree(root.right);
+            
+            max = Math.Max(max, left + right);
+            return 1 + Math.Max(left, right);
+        }
+        
+        
+        _DiameterOfBinaryTree(root);
+        return max;
+    }
+}
+```
