@@ -463,3 +463,19 @@ public class Solution {
     }
 }
 ```
+
+## 606. Construct String from Binary Tree
+
+```csharp
+public class Solution {
+    public string Tree2str(TreeNode root) {
+        if(root == null) return "";
+        string left = Tree2str(root.left);
+        string right = Tree2str(root.right);
+
+        if(left == "" && right == "") return  root.val + "";
+
+        return root.val + "(" + left  + ")" + (right == "" ? "" : "(" + right + ")");
+    }
+}
+```
