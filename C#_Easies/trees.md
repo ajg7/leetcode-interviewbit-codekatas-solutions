@@ -373,11 +373,12 @@ public class Solution {
     }
 }
 ```
+
 ## 653. Two Sum IV - Input is a BST
 
 ```csharp
 public class Solution {
-    public bool FindTarget(TreeNode root, int k) 
+    public bool FindTarget(TreeNode root, int k)
     {
         IList<int> nodes = new List<int>();
         InOrder(root, nodes);
@@ -391,10 +392,10 @@ public class Solution {
             if (sum > k) right--;
             else left++;
         }
-        
+
         return false;
     }
-    
+
     public void InOrder(TreeNode root, IList<int> nodes)
     {
         if (root == null) return;
@@ -424,7 +425,7 @@ public class Solution {
 
 ## 235. Lowest Common Ancestor of a Binary Search Tree
 
-    Just walk down from the whole tree's root as long as both p and q are in the same subtree (meaning their values are both smaller or both larger than root's). This walks straight from the root to the LCA, not looking at the rest of the tree, so it's pretty much as fast as it gets. 
+    Just walk down from the whole tree's root as long as both p and q are in the same subtree (meaning their values are both smaller or both larger than root's). This walks straight from the root to the LCA, not looking at the rest of the tree, so it's pretty much as fast as it gets.
 
 ```csharp
 public class Solution {
@@ -432,7 +433,7 @@ public class Solution {
         if (p.val < root.val && root.val > q.val) return LowestCommonAncestor(root.left, p, q);
 
         if (p.val > root.val && root.val < q.val) return LowestCommonAncestor(root.right, p, q);
-        
+
         return root;
     }
 }
@@ -444,7 +445,7 @@ public class Solution {
 public class Solution {
     public int DiameterOfBinaryTree(TreeNode root) {
         int max = 0;
-        
+
         int _DiameterOfBinaryTree(TreeNode root) {
             if (root == null) {
                 return 0;
@@ -452,12 +453,12 @@ public class Solution {
 
             int left = _DiameterOfBinaryTree(root.left);
             int right = _DiameterOfBinaryTree(root.right);
-            
+
             max = Math.Max(max, left + right);
             return 1 + Math.Max(left, right);
         }
-        
-        
+
+
         _DiameterOfBinaryTree(root);
         return max;
     }
@@ -476,6 +477,48 @@ public class Solution {
         if(left == "" && right == "") return  root.val + "";
 
         return root.val + "(" + left  + ")" + (right == "" ? "" : "(" + right + ")");
+    }
+}
+```
+
+## 257. Binary Tree Paths
+
+```csharp
+public class Solution {
+    public IList<string> BinaryTreePaths(TreeNode root) {
+        IList<string> list = new List<string>();
+        if (root != null) SearchBT(root, "", list);
+        return list;
+    }
+
+    public void SearchBT(TreeNode root, string path, IList<string> list)
+    {
+        if (root.left == null && root.right == null) list.Add(path + root.val);
+        if (root.left != null) SearchBT(root.left, path + root.val + "->", list);
+        if (root.right != null) SearchBT(root.right, path + root.val + "->", list);
+    }
+}
+```
+
+## 530. Minimum Absolute Difference in BST
+
+```csharp
+public class Solution {
+    int minDiff = int.MaxValue;
+    TreeNode prev;
+
+    public int GetMinimumDifference(TreeNode root) {
+        Inorder(root);
+        return minDiff;
+    }
+
+    public void Inorder(TreeNode root)
+    {
+        if (root == null) return;
+        Inorder(root.left);
+        if (prev != null) minDiff = Math.Min(minDiff, root.val - prev.val);
+        prev = root;
+        Inorder(root.right);
     }
 }
 ```
