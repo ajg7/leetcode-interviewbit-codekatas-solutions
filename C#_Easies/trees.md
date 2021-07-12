@@ -522,3 +522,51 @@ public class Solution {
     }
 }
 ```
+
+## 783. Minimum Distance Between BST Nodes
+
+```csharp
+public class Solution {
+    public int MinDiffInBST(TreeNode root) {
+        MinDiffInBSTRec(root);
+        return min;
+    }
+
+    int last = int.MinValue;
+    int min = int.MaxValue;
+    public void MinDiffInBSTRec(TreeNode root)
+    {
+        if (root == null)
+            return;
+
+        MinDiffInBSTRec(root.left);
+        if (last != int.MinValue)
+            min = Math.Min(root.val - last, min);
+        last = root.val;
+        MinDiffInBSTRec(root.right);
+    }
+}
+```
+
+## 563. Binary Tree Tilt
+
+```csharp
+public class Solution {
+    int result = 0;
+
+    public int FindTilt(TreeNode root) {
+        PostOrder(root);
+        return result;
+    }
+
+    private int PostOrder(TreeNode root) {
+        if (root == null) return 0;
+
+        int left = PostOrder(root.left);
+        int right = PostOrder(root.right);
+
+        result += Math.Abs(left - right);
+        return left + right + root.val;
+    }
+}
+```
