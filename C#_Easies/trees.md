@@ -55,14 +55,14 @@ public class Solution {
 ```csharp
 public class Solution {
     public TreeNode IncreasingBST(TreeNode root) {
-        return inorder(root, null);
+        return Inorder(root, null);
     }
 
-    public TreeNode inorder(TreeNode root, TreeNode tail) {
+    public TreeNode Inorder(TreeNode root, TreeNode tail) {
         if (root == null) return tail;
-        TreeNode result = inorder(root.left, root);
+        TreeNode result = Inorder(root.left, root);
         root.left = null;
-        root.right = inorder(root.right, tail);
+        root.right = Inorder(root.right, tail);
         return result;
     }
 }
@@ -567,6 +567,24 @@ public class Solution {
 
         result += Math.Abs(left - right);
         return left + right + root.val;
+    }
+}
+```
+
+## 404. Sum of Left Leaves
+
+```csharp
+public class Solution {
+    public int SumOfLeftLeaves(TreeNode root) {
+        if(root == null) return 0;
+        int sum = 0;
+        if(root.left != null) {
+            if(root.left.left == null && root.left.right == null) sum += root.left.val;
+            else sum += SumOfLeftLeaves(root.left);
+        }
+        sum += SumOfLeftLeaves(root.right);
+
+        return sum;
     }
 }
 ```
