@@ -588,3 +588,29 @@ public class Solution {
     }
 }
 ```
+
+## 993. Cousins in Binary Tree
+
+```csharp
+class Solution {
+    TreeNode xParent = null, yParent = null;
+    int xDepth = -1, yDepth = -2;
+    public bool IsCousins(TreeNode root, int x, int y) {
+        dfs(root, null, x, y, 0);
+        return xDepth == yDepth && xParent != yParent;
+    }
+    void dfs(TreeNode root, TreeNode parent, int x, int y, int depth) {
+        if (root == null) return;
+        if (x == root.val) {
+            xParent = parent;
+            xDepth = depth;
+        } else if (y == root.val) {
+            yParent = parent;
+            yDepth = depth;
+        } else {
+            dfs(root.left, root, x, y, depth + 1);
+            dfs(root.right, root, x, y, depth + 1);
+        }
+    }
+}
+```
