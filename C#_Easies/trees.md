@@ -527,23 +527,21 @@ public class Solution {
 
 ```csharp
 public class Solution {
+        
+    int prev = int.MinValue;
+    int ans = int.MaxValue;
+    
     public int MinDiffInBST(TreeNode root) {
-        MinDiffInBSTRec(root);
-        return min;
+        Dfs(root);
+        return ans;
     }
-
-    int last = int.MinValue;
-    int min = int.MaxValue;
-    public void MinDiffInBSTRec(TreeNode root)
-    {
-        if (root == null)
-            return;
-
-        MinDiffInBSTRec(root.left);
-        if (last != int.MinValue)
-            min = Math.Min(root.val - last, min);
-        last = root.val;
-        MinDiffInBSTRec(root.right);
+    
+    public void Dfs(TreeNode node) {
+        if (node == null) return;
+        Dfs(node.left);
+        if (prev != int.MinValue) ans = Math.Min(ans, node.val - prev);
+        prev = node.val;
+        Dfs(node.right);
     }
 }
 ```
