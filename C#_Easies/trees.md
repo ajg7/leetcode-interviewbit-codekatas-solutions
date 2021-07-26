@@ -527,15 +527,15 @@ public class Solution {
 
 ```csharp
 public class Solution {
-        
+
     int prev = int.MinValue;
     int ans = int.MaxValue;
-    
+
     public int MinDiffInBST(TreeNode root) {
         Dfs(root);
         return ans;
     }
-    
+
     public void Dfs(TreeNode node) {
         if (node == null) return;
         Dfs(node.left);
@@ -609,6 +609,22 @@ class Solution {
             dfs(root.left, root, x, y, depth + 1);
             dfs(root.right, root, x, y, depth + 1);
         }
+    }
+}
+```
+
+## 112. Path Sum
+
+```csharp
+public class Solution {
+    public bool HasPathSum(TreeNode root, int targetSum) {
+        if (root == null) return false;
+
+        targetSum -= root.val;
+
+        if (root.left == null && root.right == null) return targetSum == 0;
+
+        return HasPathSum(root.left, targetSum) || HasPathSum(root.right, targetSum);
     }
 }
 ```
