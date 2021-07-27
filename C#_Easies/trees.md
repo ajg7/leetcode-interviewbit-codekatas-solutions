@@ -150,19 +150,27 @@ public class Solution {
         Therefore val will transform into the int
     If both the left and right are equal then just the val, else run dfs again on both the left and right
 
-```csharp
+````csharp
 public class Solution {
+
+    int rootToLeaf = 0;
+
     public int SumRootToLeaf(TreeNode root) {
-        return dfs(root, 0);
+        PreOrder(root, 0);
+        return rootToLeaf;
     }
 
-    public int dfs(TreeNode root, int val) {
-        if (root == null) return 0;
-        val = val * 2 + root.val;
-        return root.left == root.right ? val : dfs(root.left, val) + dfs(root.right, val);
+    public void PreOrder(TreeNode root, int currentNumber) {
+        if (root != null) {
+            currentNumber = (currentNumber << 1) | root.val;
+
+            if (root.left == null && root.right == null) rootToLeaf += currentNumber;
+
+            PreOrder(root.left, currentNumber);
+            PreOrder(root.right, currentNumber);
+        }
     }
-}
-```
+}```
 
 ## 559. Maximum Depth of N-ary Tree
 
@@ -183,7 +191,7 @@ public class Solution {
         return max;
     }
 }
-```
+````
 
 ## 104. Maximum Depth of Binary Tree
 
