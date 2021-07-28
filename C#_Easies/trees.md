@@ -636,3 +636,29 @@ public class Solution {
     }
 }
 ```
+
+## 270. Closest Binary Search Tree Value
+
+```csharp
+public class Solution {
+    public int ClosestValue(TreeNode root, double target) {
+        int closest = root.val;
+        if (root.val < target) {
+            if (root.right != null) {
+                int right = ClosestValue(root.right, target);
+                if (Math.Abs(right - target) < Math.Abs(closest - target)) {
+                    closest = right;
+                }
+            }
+        } else {
+            if (root.left != null) {
+                int left = ClosestValue(root.left, target);
+                if (Math.Abs(left - target) < Math.Abs(closest - target)) {
+                    closest = left;
+                }
+            }
+        }
+        return closest;
+    }
+}
+```
