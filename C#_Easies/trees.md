@@ -804,3 +804,41 @@ public class Solution {
     }
 }
 ```
+
+## 1302. Deepest Leaves Sum
+```csharp
+public class Solution {
+    public int DeepestLeavesSum(TreeNode root) {
+        return Bfs(root);
+    }
+    
+    private int Bfs(TreeNode root) {
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(root);
+        
+        int sum = 0;
+        
+        while (queue.Count != 0) {
+            int size = queue.Count;
+            sum = 0;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.Dequeue();
+                
+                if (node.left == null && node.right == null) {
+                    sum += node.val;
+                }
+            
+                if (node.left != null) {
+                    queue.Enqueue(node.left);
+                }
+                
+                if (node.right != null) {
+                    queue.Enqueue(node.right);
+                }   
+            }
+        }
+        
+        return sum;
+    }
+}
+```
