@@ -784,3 +784,23 @@ public class Solution {
     }
 }
 ```
+## 1469. Find All The Lonely Nodes
+```csharp
+public class Solution {
+    public IList<int> GetLonelyNodes(TreeNode root) {
+        IList<int> lonelyNodes = new List<int>();
+        Dfs(root, null, lonelyNodes);
+        return lonelyNodes;
+    }
+    
+    private void Dfs(TreeNode node, TreeNode parent, IList<int> lonelyNodes) {
+        if (node == null) return;
+        
+        if (parent != null && (parent.left == null || parent.right == null)) {
+            lonelyNodes.Add(node.val);
+        }
+        Dfs(node.left, node, lonelyNodes);
+        Dfs(node.right, node, lonelyNodes);
+    }
+}
+```
