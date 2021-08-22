@@ -18,24 +18,31 @@ const backspaceCompare = (S, T) => {
 
 ### 977. Squares of a Sorted Array
 
-```javascript
-const sortedSquares = nums => {
-	let length = nums.length;
-	let result = new Array(length);
-	let left = 0;
-	let right = length - 1;
-
-	for (let i = length - 1; i >= 0; i--) {
-		let square;
-		if (Math.abs(nums[left]) < Math.abs(nums[right])) {
-			square = nums[right];
-			right--;
-		} else {
-			square = nums[left];
-			left++;
-		}
-		result[i] = square * square;
-	}
-	return result;
-};
+```csharp
+public class Solution {
+    public int[] SortedSquares(int[] nums) {
+        int[] result = new int[nums.Length];
+        
+        int writeIndex = nums.Length - 1;
+        
+        int left = 0;
+        int right = nums.Length - 1;
+        
+        while (left <= right) {
+            int leftSquared = (int) Math.Pow(nums[left], 2);   
+            int rightSquared = (int) Math.Pow(nums[right], 2);
+            
+            if (leftSquared > rightSquared) {
+                result[writeIndex] = leftSquared;
+                left += 1;
+            } else {
+                result[writeIndex] = rightSquared;
+                right -= 1;
+            }
+            writeIndex -= 1;
+        }
+        
+        return result;
+    }
+}
 ```

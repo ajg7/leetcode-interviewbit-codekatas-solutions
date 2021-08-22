@@ -3,17 +3,24 @@
 ```csharp
 public class Solution {
     public char NextGreatestLetter(char[] letters, char target) {
-        int low = 0, high = letters.Length - 1;
-
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
+        
+        int left = 0;
+        int right = letters.Length;
+        
+        while (left < right) {
+            int mid = (right - left) / 2 + left;
             if (letters[mid] > target) {
-                high = mid - 1;
+                right = mid;
             } else {
-                low = mid + 1;
+                left = mid + 1;
             }
         }
-        return letters[Math.Max(low, high) % letters.Length];
+        
+        if (left >= letters.Length) {
+            return letters[0];
+        } else {
+            return letters[left];
+        }
     }
 }
 ```
