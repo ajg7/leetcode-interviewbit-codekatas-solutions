@@ -1,9 +1,5 @@
 ## 463. Island Perimeter
 
-```csharp
-
-```
-
 ```javascript
 const islandPerimeter = grid => {
 	const directions = [
