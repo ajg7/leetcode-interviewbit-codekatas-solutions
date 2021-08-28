@@ -29,14 +29,18 @@ const containsDuplicate = nums => {
 ```javascript
 // Pointer Solution
 const removeElement = (nums, val) => {
-	let pointer = 0;
+	let final = 0;
 	for (let i = 0; i < nums.length; i++) {
-		if (nums[i] !== val) {
-			nums[pointer] = nums[i];
-			pointer++;
+		if (nums[i] === val) {
+			continue;
 		}
+		let temp = nums[i];
+		nums[i] = nums[final];
+		nums[final] = temp;
+		final++;
 	}
-	return pointer;
+
+	return final;
 };
 
 // Splice Solution
@@ -45,6 +49,27 @@ const removeElement = (nums, val) => {
 		if (nums[i] === val) nums.splice(i, 1);
 	}
 	return nums.length;
+};
+```
+
+## 283. Move Zeroes
+
+```javascript
+const moveZeroes = nums => {
+	let final = 0;
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] === 0) {
+			continue;
+		}
+
+		let temp = nums[i];
+		nums[i] = nums[final];
+		nums[final] = temp;
+
+		final++;
+	}
+
+	return nums;
 };
 ```
 
@@ -79,5 +104,26 @@ const duplicateZeros = arr => {
 			arr.pop();
 		}
 	}
+};
+```
+
+### 905. Sort Array by Parity
+
+```javascript
+const sortArrayByParity = nums => {
+	let final = 0;
+
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] % 2 === 1) {
+			continue;
+		}
+
+		let temp = nums[i];
+		nums[i] = nums[final];
+		nums[final] = temp;
+		final++;
+	}
+
+	return nums;
 };
 ```

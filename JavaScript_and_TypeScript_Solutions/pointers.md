@@ -22,16 +22,16 @@ const backspaceCompare = (S, T) => {
 public class Solution {
     public int[] SortedSquares(int[] nums) {
         int[] result = new int[nums.Length];
-        
+
         int writeIndex = nums.Length - 1;
-        
+
         int left = 0;
         int right = nums.Length - 1;
-        
+
         while (left <= right) {
-            int leftSquared = (int) Math.Pow(nums[left], 2);   
+            int leftSquared = (int) Math.Pow(nums[left], 2);
             int rightSquared = (int) Math.Pow(nums[right], 2);
-            
+
             if (leftSquared > rightSquared) {
                 result[writeIndex] = leftSquared;
                 left += 1;
@@ -41,7 +41,7 @@ public class Solution {
             }
             writeIndex -= 1;
         }
-        
+
         return result;
     }
 }

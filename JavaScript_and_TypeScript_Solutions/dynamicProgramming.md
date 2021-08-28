@@ -24,18 +24,17 @@ class NumArray {
 
 #### Kadane's Alogrithm
 
-```typescript
-const maxSubArray = (nums: number[]): number => {
-	let maxSum: number = nums[0];
+```javascript
+const maxSubArray = nums => {
+	let currSubArraySum = -Infinity;
+	let maxSubArraySum = -Infinity;
 
-	for (let i = 0; i < nums.length; i++) {
-		if (nums[i - 1] > 0) {
-			nums[i] += nums[i - 1];
-		}
-		maxSum = Math.max(nums[i], maxSum);
+	for (const num of nums) {
+		currSubArraySum = Math.max(num, currSubArraySum + num);
+		maxSubArraySum = Math.max(maxSubArraySum, currSubArraySum);
 	}
 
-	return maxSum;
+	return maxSubArraySum;
 };
 ```
 

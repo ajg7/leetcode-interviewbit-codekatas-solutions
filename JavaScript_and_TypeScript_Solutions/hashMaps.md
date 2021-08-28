@@ -16,18 +16,18 @@ const twoSum = (nums, target) => {
 };
 
 const twoSum = (nums, target) => {
-    const dict = {};
-    
-    for (let i = 0; i < nums.length; i++) {
-        const candidate = target - nums[i];
-        
-        if (dict[candidate] !== undefined) {
-            return [dict[candidate], i];
-        }
-        
-        dict[nums[i]] = i;
-    }
-    
-    return [];
+	const dict = {};
+
+	for (let i = 0; i < nums.length; i++) {
+		const candidate = target - nums[i];
+
+		if (dict[candidate] !== undefined) {
+			return [dict[candidate], i];
+		}
+
+		dict[nums[i]] = i;
+	}
+
+	return [];
 };
 ```
