@@ -103,3 +103,28 @@ const getLonelyNodes = (root) => {
     return lonelyNodes;
 };
 ```
+
+## 559. Maximum Depth of N-ary Tree
+```javascript
+const maxDepth = (root) => {
+    if (!root) return 0
+    
+    const queue = [root];
+    let level = 0;
+    
+    while (queue.length) {
+        const size = queue.length
+        
+        for (let i = 0; i < size; i++) {
+            const curr = queue.shift();
+            for (const child of curr.children) {
+                queue.push(child)
+            }
+        }
+        
+        level++;
+    }
+    
+    return level;
+};
+```
