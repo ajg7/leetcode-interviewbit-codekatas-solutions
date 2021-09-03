@@ -284,27 +284,34 @@ const islandPerimeter = (grid) => {
     const directions = [[0, -1], [-1, 0], [1, 0], [0, 1]];
     const queue = [];
     let perimeter = 0;
-    for (let row = 0; row < grid.length; row++) {
+    const visited = new Set();
+    outer : for (let row = 0; row < grid.length; row++) {
         for (let col = 0; col < grid[row].length; col++) {
-            queue.push([row, col]);
+            if (grid[row][col] === 1) {
+                queue.push([row, col]);
+                visited.add(`${row}-${col}`)
+                break outer;
+            }
         }
     }
     
     while (queue.length) {
         const [currRow, currCol] = queue.shift();
-        if (grid[currRow][currCol] === 1) {
-            perimeter += 4;
-            for (const [deltaRow, deltaCol] of directions) {
-                const nextRow = currRow + deltaRow;
-                const nextCol = currCol + deltaCol;
-                
-                if (nextRow < 0 || nextRow >= grid.length || nextCol < 0 || nextCol >= grid[currRow]) {
-                    continue;
+        perimeter += 4;
+        for (const [deltaRow, deltaCol] of directions) {
+            const nextRow = currRow + deltaRow;
+            const nextCol = currCol + deltaCol;
+
+            if (nextRow < 0 || nextRow >= grid.length || nextCol < 0 || nextCol >= grid[currRow]) {
+                continue;
+            }
+
+            if (grid[nextRow][nextCol] === 1) {
+                if (!visited.has(`${nextRow}-${nextCol}`)) {
+                    queue.push([nextRow, nextCol])
+                    visited.add(`${nextRow}-${nextCol}`);
                 }
-                
-                if (grid[nextRow][nextCol] === 1) {
-                    perimeter -= 1;
-                }
+                perimeter -= 1;
             }
         }
     }
