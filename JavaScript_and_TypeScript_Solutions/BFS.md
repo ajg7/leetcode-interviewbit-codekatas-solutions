@@ -112,7 +112,33 @@ const floodFill = (image, sr, sc, newColor) => {
     }
     
     return image;
+}
+```
     
+## 1469. Find All The Lonely Nodes
+```javascript
+const getLonelyNodes = (root) => {
+    const lonelyNodes = [];
+    const queue = [root];
+    
+    while (queue.length) {
+        const currNode = queue.shift();
+        if (!currNode.left && currNode.right) {
+            lonelyNodes.push(currNode.right.val);
+        } else if (!currNode.right && currNode.left) {
+            lonelyNodes.push(currNode.left.val);
+        }
+        
+        if (currNode.left) {
+            queue.push(currNode.left);
+        }
+        
+        if (currNode.right) {
+            queue.push(currNode.right);
+        }
+    }
+    
+    return lonelyNodes;
 };
 ```
 
