@@ -318,3 +318,32 @@ const islandPerimeter = (grid) => {
     return perimeter;
 };
 ```
+
+## 637. Average of Levels in Binary Tree
+```javascript
+const averageOfLevels = (root) => {
+    const queue = [root];
+    const averages = [];
+    while (queue.length) {
+        const size = queue.length;
+        let val = 0;
+        for (let i = 0; i < size; i++) {
+            const curr = queue.shift();
+            if (curr.left) {
+                queue.push(curr.left);
+            }
+        
+            if (curr.right) {
+                queue.push(curr.right);
+            }
+            
+            val += curr.val;
+        }
+        
+        averages.push(val / size);
+        
+    }
+    
+    return averages;
+};
+```
