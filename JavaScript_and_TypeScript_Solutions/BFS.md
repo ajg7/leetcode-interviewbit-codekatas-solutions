@@ -372,3 +372,87 @@ const averageOfLevels = root => {
 	return averages;
 };
 ```
+## 323. Number of Connected Components in an Undirected Graph
+```javascript
+const countComponents = (n, edges) => {
+    let components = 0; 
+    const visited = new Array(n).fill(false);
+    const adjacencyList = buildGraph(edges);
+    
+    for (let node = 0; node < n; node++) {
+        if (visited[node] === false) {
+            visited[node] = true;
+            components++;
+            bfs(visited, adjacencyList, node);
+        }
+    }
+    
+    return components;
+    
+};
+
+const buildGraph = (edges) => {
+    const adjacencyList = {};
+     for (const [a, b] of edges) {
+        if (adjacencyList[a] === undefined) {
+            adjacencyList[a] = [];
+        }
+        
+        if (adjacencyList[b] === undefined) {
+            adjacencyList[b] = [];
+        }
+        
+        adjacencyList[a].push(b);
+        adjacencyList[b].push(a);
+    }
+    
+    return adjacencyList;
+}
+
+const bfs = (visited, adjacencyList, node) => {
+    const queue = [node];
+    
+    while (queue.length) {
+        const curr = queue.shift();
+        
+        if (adjacencyList[curr] === undefined) {
+            continue;
+        }
+        
+        for (const neighbor of adjacencyList[curr]) {
+            if (visited[neighbor] === false) {
+                visited[neighbor] = true;
+                queue.push(neighbor);
+            }
+        }
+    }
+}
+```
+
+## 690. Employee Importance
+```javascript
+const GetImportance = (employees, id) => {
+    const adjacencyList = {};
+    const importanceMap = {};
+    
+    for (const { id, importance, subordinates } of employees) {
+        adjacencyList[id] = subordinates;
+        importanceMap[id] = importance;
+    }
+    
+    const queue = [id];
+    let totalImportance = 0;
+    
+    while (queue.length) {
+        const curr = queue.shift();
+        const importance = importanceMap[curr];
+        totalImportance += importance;
+        
+        const neighbors = adjacencyList[curr];
+        queue.push(...neighbors);
+    }
+    
+    return totalImportance;
+    
+};
+```
