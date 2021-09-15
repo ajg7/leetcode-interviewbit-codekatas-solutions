@@ -1,28 +1,29 @@
 ## 530. Minimum Absolute Difference in BST
+
 ```javascript
-const getMinimumDifference = (root) => {
-    const inorder = (root) => {
-        if (root === null) {
-            return;
-        }
+const getMinimumDifference = root => {
+	const inorder = root => {
+		if (root === null) {
+			return;
+		}
 
-        inorder(root.left);
+		inorder(root.left);
 
-        if (prev !== null) {
-            const diff = Math.abs(prev - root.val);
-            minDiff = Math.min(minDiff, diff);
-        }
-        
-        prev = root.val;
+		if (prev !== null) {
+			const diff = Math.abs(prev - root.val);
+			minDiff = Math.min(minDiff, diff);
+		}
 
-        inorder(root.right);
-    }   
-    
-    let prev = null;
-    let minDiff = Infinity;
-    
-    inorder(root);
-    
-    return minDiff;
+		prev = root.val;
+
+		inorder(root.right);
+	};
+
+	let prev = null;
+	let minDiff = Infinity;
+
+	inorder(root);
+
+	return minDiff;
 };
 ```
