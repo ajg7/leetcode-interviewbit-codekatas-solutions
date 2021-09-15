@@ -464,13 +464,13 @@ const GetImportance = (employees, id) => {
 const minDiffInBST = root => {
 	if (root === null) return 0;
 	const queue = [root];
-	let prev = [];
+	let prevNums = [];
 	let result = Infinity;
 
 	while (queue.length) {
 		const curr = queue.shift();
-		for (const prevNums of prev) {
-			result = Math.min(result, Math.abs(curr.val - prevNums));
+		for (const prevNum of prevNums) {
+			result = Math.min(result, Math.abs(curr.val - prevNum));
 		}
 		prev.push(curr.val);
 		if (prev.length) {
