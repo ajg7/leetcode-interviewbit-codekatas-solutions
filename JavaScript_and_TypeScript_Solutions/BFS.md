@@ -482,3 +482,20 @@ const minDiffInBST = root => {
 	return result;
 };
 ```
+
+## 404. Sum of Left Leaves
+```javascript
+const sumOfLeftLeaves = (root) => {
+    if (!root || !root.left && !root.right) return 0;
+    const queue = [root];
+    let result = 0;
+    
+    while (queue.length) {
+        const curr = queue.shift();
+        if (curr.left && !curr.left.left && !curr.left.right) result += curr.left.val;
+        if (curr.left) queue.push(curr.left);
+        if (curr.right) queue.push(curr.right);   
+    }
+    return result;
+};
+```
