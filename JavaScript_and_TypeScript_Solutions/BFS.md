@@ -534,6 +534,27 @@ const isCousins = (root, x, y) => {
 };
 ```
 
+## 1302. Deepest Leaves Sum
+```javascript
+const deepestLeavesSum = (root) => {
+    if (!root.left && !root.right) return root.val;
+    const queue = [root];
+    let sum = 0;
+    
+    while (queue.length) {
+        const size = queue.length;
+        sum = 0;
+        for (let i = 0; i < size; i++) {
+            const curr = queue.shift();
+            if (!curr.left && !curr.right) sum += curr.val;
+            if (curr.left) queue.push(curr.left);
+            if (curr.right) queue.push(curr.right);
+        }
+    }
+    
+    return sum;
+};
+```
 ## 111. Minimum Depth of Binary Tree
 ```javascript
 const minDepth = (root) => {
