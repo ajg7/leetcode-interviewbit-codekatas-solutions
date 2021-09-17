@@ -499,3 +499,59 @@ const sumOfLeftLeaves = (root) => {
     return result;
 };
 ```
+
+## 993. Cousins in Binary Tree
+* We can remove if (!root) return false because constraints are [2, 100]
+```javascript
+const isCousins = (root, x, y) => {
+    const queue = [root];
+    
+    while (queue.length) {
+        const size = queue.length;
+        let isX = false;
+        let isY = false;
+        for (let i = 0; i < size; i++) {
+            const curr = queue.shift();
+            if (curr.val === x) isX = true;
+            if (curr.val === y) isY = true;
+            if (curr.left && curr.right) {
+                if (curr.left.val === x && curr.right.val === y) {
+                    return false;
+                }
+                
+                if (curr.left.val === y && curr.right.val === x) {
+                    return false;
+                }
+            }
+            
+            if (curr.left) queue.push(curr.left);
+            if (curr.right) queue.push(curr.right);
+        }
+        
+        if (isX && isY) return true;
+        else if (isX || isY) return false;
+    }
+};
+```
+
+## 111. Minimum Depth of Binary Tree
+```javascript
+const minDepth = (root) => {
+    if (!root) return 0;
+    const queue = [root];
+    let level = 1;
+    
+    while (queue.length) {
+        const size = queue.length;
+        
+        for (let i = 0; i < size; i++) {
+            const curr = queue.shift();
+            if (!curr.left && !curr.right) return level;
+            if (curr.left) queue.push(curr.left);
+            if (curr.right) queue.push(curr.right);
+        }
+        
+        level++;
+    }
+};
+```
