@@ -508,12 +508,13 @@ const isCousins = (root, x, y) => {
     
     while (queue.length) {
         const size = queue.length;
-        let isX = false;
-        let isY = false;
+        let foundX = false;
+        let foundY = false;
+
         for (let i = 0; i < size; i++) {
             const curr = queue.shift();
-            if (curr.val === x) isX = true;
-            if (curr.val === y) isY = true;
+            if (curr.val === x) foundX = true;
+            if (curr.val === y) foundY = true;
             if (curr.left && curr.right) {
                 if (curr.left.val === x && curr.right.val === y) {
                     return false;
@@ -528,12 +529,47 @@ const isCousins = (root, x, y) => {
             if (curr.right) queue.push(curr.right);
         }
         
-        if (isX && isY) return true;
-        else if (isX || isY) return false;
+        if (foundX && foundY) return true;
+        else if (foundX || foundY) return false;
     }
 };
 ```
+## 993. Cousins in Binary Tree
 
+```typescript
+const isCousins = (root: TreeNode | null, x: number, y: number): boolean => {
+        if (!root) return false;
+        const queue: TreeNode[] = [root];
+
+        while (queue.length) {
+            const size: number = queue.length;
+            let foundX: boolean = false;
+            let foundY: boolean = false;
+
+            for (let i = 0; i < size; i++) {
+                const curr: TreeNode = queue.shift();
+                if (curr.left && curr.right) {
+                    if (curr.left.val === x && curr.right.val === y) {
+                        return false;
+                    }
+                    
+                    if (curr.left.val === y && curr.right.val === x) {
+                        return false;
+                    }
+                }
+                
+                if (curr.val === x) foundX = true;
+                if (curr.val === y) foundY = true;
+                if (curr.left) queue.push(curr.left);
+                if (curr.right) queue.push(curr.right);
+            }
+            
+            if (foundX && foundY) return true;
+            else if (foundX || foundY) return false;
+        }
+    
+};
+```
 ## 1302. Deepest Leaves Sum
 ```javascript
 const deepestLeavesSum = (root) => {
@@ -574,5 +610,56 @@ const minDepth = (root) => {
         
         level++;
     }
+};
+```
+
+## 653. Two Sum IV- Input is a BST
+```typescript
+const findTarget = (root: TreeNode | null, k: number): boolean => {
+    const queue: TreeNode[] = [root];
+    const map: Map<number, number> = new Map();
+    
+    while (queue.length) {
+        const size: number = queue.length;
+        
+        for (let i = 0; i < size; i++) {
+            const curr: TreeNode = queue.shift();
+            const candidate: number = k - curr.val;
+            
+            if (map.has(candidate)) return true;
+            else map.set(curr.val, candidate);
+            
+            if (curr.left) queue.push(curr.left);
+            if (curr.right) queue.push(curr.right);
+        }
+    }
+    
+    return false;
+};
+```
+
+```javascript
+const findTarget = (root, k) => {
+    const map = new Map();
+    const queue = [root];
+    
+    while (queue.length) {
+        const size = queue.length;
+        for (let i = 0; i < size; i++) {
+            const curr = queue.shift();
+            const candidate = k - curr.val;
+            
+            if (map.has(candidate)) {
+                return true;
+            } else {
+                map.set(curr.val, candidate);
+            }
+            
+            if (curr.left) queue.push(curr.left);
+            if (curr.right) queue.push(curr.right);
+        }
+    }
+    
+    return false;
 };
 ```
