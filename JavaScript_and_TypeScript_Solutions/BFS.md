@@ -484,182 +484,190 @@ const minDiffInBST = root => {
 ```
 
 ## 404. Sum of Left Leaves
+
 ```javascript
-const sumOfLeftLeaves = (root) => {
-    if (!root || !root.left && !root.right) return 0;
-    const queue = [root];
-    let result = 0;
-    
-    while (queue.length) {
-        const curr = queue.shift();
-        if (curr.left && !curr.left.left && !curr.left.right) result += curr.left.val;
-        if (curr.left) queue.push(curr.left);
-        if (curr.right) queue.push(curr.right);   
-    }
-    return result;
+const sumOfLeftLeaves = root => {
+	if (!root || (!root.left && !root.right)) return 0;
+	const queue = [root];
+	let result = 0;
+
+	while (queue.length) {
+		const curr = queue.shift();
+		if (curr.left && !curr.left.left && !curr.left.right) result += curr.left.val;
+		if (curr.left) queue.push(curr.left);
+		if (curr.right) queue.push(curr.right);
+	}
+	return result;
 };
 ```
 
 ## 993. Cousins in Binary Tree
-* We can remove if (!root) return false because constraints are [2, 100]
+
+-   We can remove if (!root) return false because constraints are [2, 100]
+
 ```javascript
 const isCousins = (root, x, y) => {
-    const queue = [root];
-    
-    while (queue.length) {
-        const size = queue.length;
-        let foundX = false;
-        let foundY = false;
+	const queue = [root];
 
-        for (let i = 0; i < size; i++) {
-            const curr = queue.shift();
-            if (curr.val === x) foundX = true;
-            if (curr.val === y) foundY = true;
-            if (curr.left && curr.right) {
-                if (curr.left.val === x && curr.right.val === y) {
-                    return false;
-                }
-                
-                if (curr.left.val === y && curr.right.val === x) {
-                    return false;
-                }
-            }
-            
-            if (curr.left) queue.push(curr.left);
-            if (curr.right) queue.push(curr.right);
-        }
-        
-        if (foundX && foundY) return true;
-        else if (foundX || foundY) return false;
-    }
+	while (queue.length) {
+		const size = queue.length;
+		let foundX = false;
+		let foundY = false;
+
+		for (let i = 0; i < size; i++) {
+			const curr = queue.shift();
+			if (curr.val === x) foundX = true;
+			if (curr.val === y) foundY = true;
+			if (curr.left && curr.right) {
+				if (curr.left.val === x && curr.right.val === y) {
+					return false;
+				}
+
+				if (curr.left.val === y && curr.right.val === x) {
+					return false;
+				}
+			}
+
+			if (curr.left) queue.push(curr.left);
+			if (curr.right) queue.push(curr.right);
+		}
+
+		if (foundX && foundY) return true;
+		else if (foundX || foundY) return false;
+	}
 };
 ```
+
 ## 993. Cousins in Binary Tree
 
 ```typescript
 const isCousins = (root: TreeNode | null, x: number, y: number): boolean => {
-        if (!root) return false;
-        const queue: TreeNode[] = [root];
+	if (!root) return false;
+	const queue: TreeNode[] = [root];
 
-        while (queue.length) {
-            const size: number = queue.length;
-            let foundX: boolean = false;
-            let foundY: boolean = false;
+	while (queue.length) {
+		const size: number = queue.length;
+		let foundX: boolean = false;
+		let foundY: boolean = false;
 
-            for (let i = 0; i < size; i++) {
-                const curr: TreeNode = queue.shift();
-                if (curr.left && curr.right) {
-                    if (curr.left.val === x && curr.right.val === y) {
-                        return false;
-                    }
-                    
-                    if (curr.left.val === y && curr.right.val === x) {
-                        return false;
-                    }
-                }
-                
-                if (curr.val === x) foundX = true;
-                if (curr.val === y) foundY = true;
-                if (curr.left) queue.push(curr.left);
-                if (curr.right) queue.push(curr.right);
-            }
-            
-            if (foundX && foundY) return true;
-            else if (foundX || foundY) return false;
-        }
-    
+		for (let i = 0; i < size; i++) {
+			const curr: TreeNode = queue.shift();
+			if (curr.left && curr.right) {
+				if (curr.left.val === x && curr.right.val === y) {
+					return false;
+				}
+
+				if (curr.left.val === y && curr.right.val === x) {
+					return false;
+				}
+			}
+
+			if (curr.val === x) foundX = true;
+			if (curr.val === y) foundY = true;
+			if (curr.left) queue.push(curr.left);
+			if (curr.right) queue.push(curr.right);
+		}
+
+		if (foundX && foundY) return true;
+		else if (foundX || foundY) return false;
+	}
 };
 ```
+
 ## 1302. Deepest Leaves Sum
+
 ```javascript
-const deepestLeavesSum = (root) => {
-    if (!root.left && !root.right) return root.val;
-    const queue = [root];
-    let sum = 0;
-    
-    while (queue.length) {
-        const size = queue.length;
-        sum = 0;
-        for (let i = 0; i < size; i++) {
-            const curr = queue.shift();
-            if (!curr.left && !curr.right) sum += curr.val;
-            if (curr.left) queue.push(curr.left);
-            if (curr.right) queue.push(curr.right);
-        }
-    }
-    
-    return sum;
+const deepestLeavesSum = root => {
+	if (!root.left && !root.right) return root.val;
+	const queue = [root];
+	let sum = 0;
+
+	while (queue.length) {
+		const size = queue.length;
+		sum = 0;
+		for (let i = 0; i < size; i++) {
+			const curr = queue.shift();
+			if (!curr.left && !curr.right) sum += curr.val;
+			if (curr.left) queue.push(curr.left);
+			if (curr.right) queue.push(curr.right);
+		}
+	}
+
+	return sum;
 };
 ```
+
 ## 111. Minimum Depth of Binary Tree
+
 ```javascript
-const minDepth = (root) => {
-    if (!root) return 0;
-    const queue = [root];
-    let level = 1;
-    
-    while (queue.length) {
-        const size = queue.length;
-        
-        for (let i = 0; i < size; i++) {
-            const curr = queue.shift();
-            if (!curr.left && !curr.right) return level;
-            if (curr.left) queue.push(curr.left);
-            if (curr.right) queue.push(curr.right);
-        }
-        
-        level++;
-    }
+const minDepth = root => {
+	if (!root) return 0;
+	const queue = [root];
+	let level = 1;
+
+	while (queue.length) {
+		const size = queue.length;
+
+		for (let i = 0; i < size; i++) {
+			const curr = queue.shift();
+			if (!curr.left && !curr.right) return level;
+			if (curr.left) queue.push(curr.left);
+			if (curr.right) queue.push(curr.right);
+		}
+
+		level++;
+	}
 };
 ```
 
 ## 653. Two Sum IV- Input is a BST
+
 ```typescript
 const findTarget = (root: TreeNode | null, k: number): boolean => {
-    const queue: TreeNode[] = [root];
-    const map: Map<number, number> = new Map();
-    
-    while (queue.length) {
-        const size: number = queue.length;
-        
-        for (let i = 0; i < size; i++) {
-            const curr: TreeNode = queue.shift();
-            const candidate: number = k - curr.val;
-            
-            if (map.has(candidate)) return true;
-            else map.set(curr.val, candidate);
-            
-            if (curr.left) queue.push(curr.left);
-            if (curr.right) queue.push(curr.right);
-        }
-    }
-    
-    return false;
+	const queue: TreeNode[] = [root];
+	const map: Map<number, number> = new Map();
+
+	while (queue.length) {
+		const size: number = queue.length;
+
+		for (let i = 0; i < size; i++) {
+			const curr: TreeNode = queue.shift();
+			const candidate: number = k - curr.val;
+
+			if (map.has(candidate)) return true;
+			else map.set(curr.val, candidate);
+
+			if (curr.left) queue.push(curr.left);
+			if (curr.right) queue.push(curr.right);
+		}
+	}
+
+	return false;
 };
 ```
 
 ```javascript
 const findTarget = (root, k) => {
-    const map = new Map();
-    const queue = [root];
-    
-    while (queue.length) {
-        const size = queue.length;
-        for (let i = 0; i < size; i++) {
-            const curr = queue.shift();
-            const candidate = k - curr.val;
-            
-            if (map.has(candidate)) {
-                return true;
-            } else {
-                map.set(curr.val, candidate);
-            }
-            
-            if (curr.left) queue.push(curr.left);
-            if (curr.right) queue.push(curr.right);
-        }
-    }
-    
-    return false;
+	const map = new Map();
+	const queue = [root];
+
+	while (queue.length) {
+		const size = queue.length;
+		for (let i = 0; i < size; i++) {
+			const curr = queue.shift();
+			const candidate = k - curr.val;
+
+			if (map.has(candidate)) {
+				return true;
+			} else {
+				map.set(curr.val, candidate);
+			}
+
+			if (curr.left) queue.push(curr.left);
+			if (curr.right) queue.push(curr.right);
+		}
+	}
+
+	return false;
 };
 ```
