@@ -40,7 +40,7 @@ const islandPerimeter = grid => {
 			if (grid[row][col] === 1) {
 				perimeter += 4;
 
-				for ([deltaRow, deltaCol] of directions) {
+				for (const [deltaRow, deltaCol] of directions) {
 					const nextRow = row + deltaRow;
 					const nextCol = col + deltaCol;
 
