@@ -81,25 +81,68 @@ const numJewelsInStones = (jewels, stones) => {
 
 ```javascript
 class OrderedStream {
-  // Define a construction function and set some values as object properties to keep our data persistent between invocations
-  constructor(n) {
-    this.pointer = 0
-    // this will create an array of length (n) and set all values to 'undefined'
-    this.list = []
-  }
+	// Define a construction function and set some values as object properties to keep our data persistent between invocations
+	constructor(n) {
+		this.pointer = 0;
+		// this will create an array of length (n) and set all values to 'undefined'
+		this.list = [];
+	}
 
-  insert(id, value) {
-    // will be used to store values that pass the condition and to be returned
-    let chunk = []
-    // since array indices start from zero and id in this problem from 1 we need to decrement it
-    this.list[id - 1] = value
-    // every time we insert a value we have to look if there is a value at the index (pointer) that should be returned
-    // if there is any we copy it and then iterate to the next element until the condition is no longer true
-    while(this.list[this.pointer]) {
-      chunk.push(this.list[this.pointer])
-      this.pointer++
-    }
-    return chunk
-  }
+	insert(id, value) {
+		// will be used to store values that pass the condition and to be returned
+		let chunk = [];
+		// since array indices start from zero and id in this problem from 1 we need to decrement it
+		this.list[id - 1] = value;
+		// every time we insert a value we have to look if there is a value at the index (pointer) that should be returned
+		// if there is any we copy it and then iterate to the next element until the condition is no longer true
+		while (this.list[this.pointer]) {
+			chunk.push(this.list[this.pointer]);
+			this.pointer++;
+		}
+		return chunk;
+	}
 }
+```
+
+### 1365. How Many Numbers Are Smaller Than the Current Number
+
+```javascript
+const smallerNumbersThanCurrent = nums => {
+	let result = [];
+
+	for (let i = 0; i < nums.length; i++) {
+		let count = 0;
+		let j = 0;
+
+		while (j < nums.length) {
+			if (nums[i] > nums[j]) {
+				count++;
+				j++;
+			} else {
+				j++;
+			}
+		}
+		result.push(count);
+	}
+
+	return result;
+};
+```
+
+### 1165. Single-Row Keyboard
+
+```javascript
+const calculateTime = (keyboard, word) => {
+	const map = new Map(keyboard.split("").map((letter, index) => [letter, index]));
+	let count = 0;
+	let curr = 0;
+
+	for (const letter of word) {
+		const temp = map.get(letter);
+		count += Math.abs(curr - temp);
+		curr = temp;
+	}
+
+	return count;
+};
 ```
