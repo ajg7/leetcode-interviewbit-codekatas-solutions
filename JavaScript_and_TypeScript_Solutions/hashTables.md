@@ -146,3 +146,44 @@ const calculateTime = (keyboard, word) => {
 	return count;
 };
 ```
+
+### 760. Find Anagram Mappings
+
+```javascript
+const anagramMappings = (nums1, nums2) => {
+	const map = new Map();
+	let result = [];
+
+	for (let i = 0; i < nums2.length; i++) {
+		map.set(nums2[i], i);
+	}
+
+	for (const num of nums1) {
+		const anagramIndex = map.get(num);
+		result.push(anagramIndex);
+	}
+
+	return result;
+};
+```
+
+### 1832. Check if the Sentence Is Pangram
+
+```javascript
+const checkIfPangram = sentence => {
+	return new Set(sentence.split("")).size === 26;
+};
+```
+
+### 1684. Count the Number of Consistent Strings
+
+```javascript
+const countConsistentStrings = (allowed, words) => {
+	const chars = new Set(allowed);
+	return words.filter(word => {
+		return [...word].every(char => {
+			return chars.has(char);
+		});
+	}).length;
+};
+```
