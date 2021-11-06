@@ -219,29 +219,28 @@ const areOccurrencesEqual = s => {
 	return set.size === 1;
 };
 ```
+
 ### 1748. Sum of Unique Elements
+
 ```javascript
-const sumOfUnique = (nums) => {
-    const map = {};
-    let result = 0;
-    
-    for (const num of nums) {
-        if (map[num]) {
-            map[num] += 1;
-        } else {
-            map[num] = 1;
-        }
-    }
-    
-    console.log(Object.entries(map))
-    
-    for (const [key, value] of Object.entries(map)) {
-        if (value === 1) {
-            result += +key;
-        } 
-        
-    }
-    
-    return result;
+const sumOfUnique = nums => {
+	const map = {};
+	let result = 0;
+
+	for (const num of nums) {
+		if (map[num]) {
+			map[num] += 1;
+		} else {
+			map[num] = 1;
+		}
+	}
+
+	for (const [key, value] of Object.entries(map)) {
+		if (value === 1) {
+			result += +key;
+		}
+	}
+
+	return result;
 };
 ```
