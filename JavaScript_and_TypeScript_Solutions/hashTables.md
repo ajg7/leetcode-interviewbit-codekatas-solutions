@@ -68,6 +68,19 @@ const numJewelsInStones = (jewels, stones) => {
 };
 ```
 
+```typescript
+const numJewelsInStones = (jewels: string, stones: string): number => {
+	const jewelSet: Set<string> = new Set(jewels);
+	let count: number = 0;
+
+	for (const stone of stones) {
+		if (jewelSet.has(stone)) count++;
+	}
+
+	return count;
+};
+```
+
 #### Alternative Way of doing 771. Jewels and Stones
 
 ```javascript
@@ -81,7 +94,7 @@ const numJewelsInStones = (jewels, stones) => {
 
 ```javascript
 class OrderedStream {
-	// Define a construction function and set some values as object properties to keep our data persistent between invocations
+	// Define a constructor function and set some values as object properties to keep our data persistent between invocations
 	constructor(n) {
 		this.pointer = 0;
 		// this will create an array of length (n) and set all values to 'undefined'
@@ -185,5 +198,24 @@ const countConsistentStrings = (allowed, words) => {
 			return chars.has(char);
 		});
 	}).length;
+};
+```
+
+### 1941. Check if All Characters Have Equal Number of Occurrences
+
+```javascript
+const areOccurrencesEqual = s => {
+	const map = {};
+
+	for (const letter of s) {
+		if (map[letter]) {
+			map[letter] += 1;
+		} else {
+			map[letter] = 1;
+		}
+	}
+
+	const set = new Set(Object.values(map));
+	return set.size === 1;
 };
 ```
