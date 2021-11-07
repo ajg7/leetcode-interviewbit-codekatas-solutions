@@ -244,3 +244,22 @@ const sumOfUnique = nums => {
 	return result;
 };
 ```
+
+### 1207. Unique Number of Occurrences
+
+```javascript
+const uniqueOccurrences = arr => {
+	const map = new Map();
+
+	for (const num of arr) {
+		if (map.has(num)) {
+			const count = map.get(num) + 1;
+			map.set(num, count);
+		} else {
+			map.set(num, 1);
+		}
+	}
+
+	return new Set(map.values()).size === map.size;
+};
+```
