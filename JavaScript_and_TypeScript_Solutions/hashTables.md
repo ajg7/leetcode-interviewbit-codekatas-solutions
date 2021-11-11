@@ -263,3 +263,215 @@ const uniqueOccurrences = arr => {
 	return new Set(map.values()).size === map.size;
 };
 ```
+
+### 242. Valid Anagrams
+
+```javascript
+const isAnagram = (s, t) => {
+    const map = {};
+
+    for (const letter of s) {
+        map[letter] = 1 + (map[letter] || 0)
+    }
+        
+    for (const letter of t) {
+        map[letter] = (map[letter] || 0) - 1;
+    }    
+    
+    for (const value of Object.values(map)) {
+        if (value !== 0) {
+            return false;
+        }
+    }
+    
+    return true;
+};
+```
+
+```javascript
+const isAnagram = (s, t) => {
+    const counts = new Array(26).fill(0);
+
+    for (const letter of s) {
+        const index = letter.charCodeAt(0) - 'a'.charCodeAt(0);
+        counts[index]++;
+    }
+        
+    for (const letter of t) {
+        const index = letter.charCodeAt(0) - 'a'.charCodeAt(0);
+        counts[index]--;
+    }    
+    
+    for (const count of counts) {
+        if (count !== 0) {
+            return false;
+        }
+    }
+    
+    return true;
+};
+
+```
+
+### 804. Unique Morse Code Words
+
+```javascript
+const uniqueMorseRepresentations = words => {
+	const dict = [
+		".-",
+		"-...",
+		"-.-.",
+		"-..",
+		".",
+		"..-.",
+		"--.",
+		"....",
+		"..",
+		".---",
+		"-.-",
+		".-..",
+		"--",
+		"-.",
+		"---",
+		".--.",
+		"--.-",
+		".-.",
+		"...",
+		"-",
+		"..-",
+		"...-",
+		".--",
+		"-..-",
+		"-.--",
+		"--..",
+	];
+
+	const translatedWords = words.map(word => {
+		return translate(word, dict);
+	});
+
+	return countUniqueElements(translatedWords);
+};
+
+const translate = (word, dict) => {
+	const result = [];
+	for (const letter of word) {
+		const lowerCaseLetter = letter.toLowerCase();
+		const index = indexForChar(lowerCaseLetter);
+		const morseCode = dict[index];
+		result.push(morseCode);
+	}
+	return result.join("");
+};
+
+const countUniqueElements = values => {
+	const set = new Set();
+
+	for (const value of values) {
+		set.add(value);
+	}
+	return set.size;
+};
+
+const indexForChar = letter => letter.charCodeAt(0) - "a".charCodeAt(0);
+```
+
+### 1436. Destination City
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+const destCity = (paths) => {
+    const map = new Map();
+    
+    for (const [startCity, endCity] of paths) {
+        map.set(startCity, endCity);
+    }
+    
+    for (const [key, value] of map.entries()) {
+        if (!map.has(value)) return value;
+    }
+};
+```
+
+### 2032. Two Out of Three
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+const twoOutOfThree = (nums1, nums2, nums3) => {
+    const arr1 = new Array(101).fill(false);
+    const arr2 = new Array(101).fill(false);
+    const arr3 = new Array(101).fill(false);
+    
+    for (const num of nums1) {
+        arr1[num] = true;
+    }
+    
+    for (const num of nums2) {
+        arr2[num] = true;
+    }
+    
+    for (const num of nums3) {
+        arr3[num] = true;
+    }
+    
+    const map = new Array(101).fill(0);
+    const result = [];
+    
+    for (let num = 1; num <= 100; num++) {
+        if (arr1[num]) {
+            map[num]++
+        }
+        
+        if (arr2[num]) {
+            map[num]++
+        }
+        
+        if (arr3[num]) {
+            map[num]++
+        }
+    }
+    
+    for (let num = 0; num < map.length; num++) {
+        if (map[num] > 1) {
+            result.push(num)
+        }
+    }
+    
+    return result;
+};
+```
+
+### 1394. Find Lucky Integer in an Array
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+const findLucky = (arr) => {
+    const map = new Array(501).fill(0)
+    let luckyNum = 0;
+    
+    for (const num of arr) {
+        map[num]++;
+    }
+    
+    for (let num = 1; num <= 500; num++) {
+        if (map[num] == num) {
+            luckyNum = Math.max(luckyNum, num)
+        }
+    }
+        
+    return luckyNum || -1;
+};
+```
+
+### 575. Distribute Candies
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+const distributeCandies = (candyType) => {
+    const candies = new Set(candyType);
+    const maxAmount = candyType.length / 2;
+    
+    return Math.min(candies.size, maxAmount)
+};
+```

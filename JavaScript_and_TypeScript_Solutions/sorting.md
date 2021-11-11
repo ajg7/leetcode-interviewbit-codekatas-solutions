@@ -1,6 +1,6 @@
 ## Sorting
 
-### 168. Majority Element
+### 169. Majority Element
 
 #### Boyer-Moore Voting Algorithm
 
