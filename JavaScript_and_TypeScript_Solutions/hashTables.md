@@ -507,3 +507,147 @@ const romanToInt = s => {
 	return sum;
 };
 ```
+
+### 1742. Maximum Number of Balls in a Box
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+const countBalls = (lowLimit, highLimit) => {
+	const ballArray = new Array(46).fill(0);
+	let max = 0;
+
+	for (let ball = lowLimit; ball <= highLimit; ball++) {
+		const boxNum = sumOfDigits(ball);
+		ballArray[boxNum]++;
+		max = Math.max(max, ballArray[boxNum]);
+	}
+	return max;
+};
+
+const sumOfDigits = num => {
+	let sum = 0;
+	while (num > 0) {
+		sum += num % 10;
+		num = Math.trunc(num / 10);
+	}
+	return sum;
+};
+```
+
+### 961. N-Repeated Element in Size 2N Array
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+const repeatedNTimes = nums => {
+	const n = Math.trunc(nums.length / 2);
+	const arr = new Array(10_000).fill(0);
+
+	for (const num of nums) {
+		arr[num]++;
+	}
+
+	for (const num of nums) {
+		if (arr[num] === n) {
+			return num;
+		}
+	}
+};
+```
+
+### 1213. Intersection of Three Sorted Arrays
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+const arraysIntersection = (arr1, arr2, arr3) => {
+	const map = new Map();
+	const result = [];
+
+	for (const num of arr1) {
+		map.set(num, 1);
+	}
+	for (const num of arr2) {
+		const count = map.get(num) + 1 ?? 1;
+		map.set(num, count);
+	}
+	for (const num of arr3) {
+		const count = map.get(num) + 1 ?? 1;
+		map.set(num, count);
+	}
+
+	for (const [key, value] of map.entries()) {
+		if (value === 3) result.push(key);
+	}
+
+	return result;
+};
+```
+
+### 1370. Increasing Decreasing String
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+
+const sortString = s => {
+	const result = [];
+	const charCounts = new Array(26).fill(0);
+
+	for (const char of s) {
+		charCounts[char.charCodeAt(0) - "a".charCodeAt(0)]++;
+	}
+
+	while (s.length !== result.length) {
+		for (let i = 0; i < charCounts.length; i++) {
+			if (!charCounts[i]) {
+				continue;
+			}
+
+			result.push(String.fromCharCode(i + "a".charCodeAt(0)));
+			charCounts[i]--;
+		}
+
+		for (let i = charCounts.length - 1; i >= 0; i--) {
+			if (!charCounts[i]) {
+				continue;
+			}
+			result.push(String.fromCharCode(i + "a".charCodeAt(0)));
+			charCounts[i]--;
+		}
+	}
+
+	return result.join("");
+};
+```
+
+### 1086. High Five
+
+```javascript
+// Time-Complexity: O(n * m * p)
+// Space-Complexity: O(n)
+const highFive = items => {
+	const map = new Map();
+	const result = [];
+
+	for (const [id, score] of items) {
+		const value = map.get(id) ? [...map.get(id), score] : [score];
+		map.set(id, value);
+	}
+
+	for (const [key, value] of map.entries()) {
+		const sortedArr = value.sort((a, b) => b - a);
+		const average = Math.floor(
+			sortedArr.reduce((accum, curr, index) => {
+				if (index < 5) {
+					return accum + curr;
+				} else return accum;
+			}, 0) / 5
+		);
+		result.push([key, average]);
+	}
+
+	return result.sort((a, b) => a[0] - b[0]);
+};
+```
