@@ -766,3 +766,54 @@ const findTheDifference = (s, t) => {
 	}
 };
 ```
+
+### 383. Ransom Note
+
+```javascript
+// Space-Complexity: O(n)
+// Time-Complexity: O(n)
+
+const canConstruct = (ransomNote, magazine) => {
+	const map = new Map();
+
+	for (const letter of ransomNote) {
+		const count = 1 + map.get(letter) || 1;
+		map.set(letter, count);
+	}
+
+	for (const letter of magazine) {
+		if (map.has(letter)) {
+			const count = map.get(letter) - 1;
+			map.set(letter, count);
+		}
+	}
+
+	for (const value of map.values()) {
+		console.log(value);
+		if (value > 0) return false;
+	}
+
+	return true;
+};
+```
+### 141. Linked List Cycle
+
+```javascript
+// Time-Complexity: O(n)
+//Space-Complexity: O(n)
+
+const hasCycle = (head) => {
+    const map = new Map();
+    let pos = 0
+    
+    while (head && head.next) {
+        if (map.has(head)) {
+            return true;
+        }
+        map.set(head)
+        head = head.next;
+    }
+    
+    return false;
+};
+```
