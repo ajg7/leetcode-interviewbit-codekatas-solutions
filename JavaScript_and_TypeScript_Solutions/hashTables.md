@@ -651,3 +651,118 @@ const highFive = items => {
 	return result.sort((a, b) => a[0] - b[0]);
 };
 ```
+
+### 2053. Kth Distinct String in an Array
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+const kthDistinct = (arr, k) => {
+	const map = {};
+
+	for (const letter of arr) {
+		const count = map[letter] + 1 || 1;
+		map[letter] = count;
+	}
+
+	let found = 0;
+	for (const [key, value] of Object.entries(map)) {
+		if (value === 1) {
+			found++;
+		}
+
+		if (found === k) {
+			return key;
+		}
+	}
+
+	return "";
+};
+```
+
+### 1935. Maximum Number of Words You Can Type
+
+```javascript
+// Time-Complexity: O(n * m)
+// Space-Complexity: O(26) [We can allocate 26 blocks for each letter in the English alphabet] -> O(1)
+
+const canBeTypedWords = (text, brokenLetters) => {
+	// 2. For every word in the loop we need to run a function that evaluates whether we can type it
+	let count = 0;
+	const set = new Set(brokenLetters);
+
+	for (const word of text.split(" ")) {
+		const result = isBrokenLetterInWord(word, set);
+		if (!result) {
+			count++;
+		}
+	}
+
+	return count;
+};
+
+const isBrokenLetterInWord = (word, set) => {
+	for (const letter of word) {
+		if (set.has(letter)) {
+			return true;
+		}
+	}
+
+	return false;
+};
+```
+
+### 1460. Make Two Arrays Equal by Reversing Sub-Arrays
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+const canBeEqual = (target, arr) => {
+	const map = {};
+
+	for (const num of target) {
+		map[num] = 1 + (map[num] || 0);
+	}
+
+	for (const num of arr) {
+		map[num] = (map[num] || 0) - 1;
+	}
+
+	for (const [key, values] of Object.entries(map)) {
+		if (values !== 0) {
+			return false;
+		}
+	}
+
+	return true;
+};
+```
+
+### 389. Find the Difference
+
+```javascript
+// Time-Complexity: O(n + m + p) -> O(n)
+// Space-Complexity: O(n)
+
+const findTheDifference = (s, t) => {
+	const map = new Map();
+
+	for (const letter of s) {
+		const count = 1 + map.get(letter) || 1;
+		map.set(letter, count);
+	}
+
+	for (const letter of t) {
+		if (map.has(letter)) {
+			const count = map.get(letter) - 1;
+			map.set(letter, count);
+		} else {
+			map.set(letter, 1);
+		}
+	}
+
+	for (const [key, value] of map.entries()) {
+		if (value !== 0) return key;
+	}
+};
+```
