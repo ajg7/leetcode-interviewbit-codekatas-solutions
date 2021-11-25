@@ -796,24 +796,69 @@ const canConstruct = (ransomNote, magazine) => {
 	return true;
 };
 ```
+
 ### 141. Linked List Cycle
 
 ```javascript
 // Time-Complexity: O(n)
 //Space-Complexity: O(n)
 
-const hasCycle = (head) => {
-    const map = new Map();
-    let pos = 0
-    
-    while (head && head.next) {
-        if (map.has(head)) {
-            return true;
-        }
-        map.set(head)
-        head = head.next;
-    }
-    
-    return false;
+const hasCycle = head => {
+	const map = new Map();
+	let pos = 0;
+
+	while (head && head.next) {
+		if (map.has(head)) {
+			return true;
+		}
+		map.set(head);
+		head = head.next;
+	}
+
+	return false;
+};
+```
+
+### 1133. Largest Unique Number
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+
+const largestUniqueNumber = nums => {
+	const arr = new Array(1001).fill(0);
+	let max = -1;
+
+	for (const num of nums) {
+		arr[num]++;
+	}
+
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] === 1) {
+			max = Math.max(max, i);
+		}
+	}
+
+	return max;
+};
+
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+
+const largestUniqueNumber = nums => {
+	const map = {};
+	let max = -1;
+
+	for (const num of nums) {
+		map[num] = 1 + (map[num] || 0);
+	}
+
+	for (const [key, value] of Object.entries(map)) {
+		if (value === 1) {
+			max = Math.max(max, key);
+		}
+	}
+
+	return max;
 };
 ```
