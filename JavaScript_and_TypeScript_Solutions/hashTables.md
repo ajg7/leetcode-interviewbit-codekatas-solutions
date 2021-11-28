@@ -862,3 +862,83 @@ const largestUniqueNumber = nums => {
 	return max;
 };
 ```
+
+### 1331. Rank Transform of an Array
+
+```javascript
+// Time-Complexity: O(n);
+// Space-Complexity: O(n)
+
+const arrayRankTransform = arr => {
+	const map = new Map();
+	const result = [];
+	const arrCopy = [...arr];
+	let count = 1;
+	for (const num of arr.sort((a, b) => a - b)) {
+		if (!map.has(num)) {
+			map.set(num, count);
+			count++;
+		}
+	}
+	for (const num of arrCopy) {
+		result.push(map.get(num));
+	}
+
+	return result;
+};
+```
+
+### 219. Contains Duplicate II
+
+    1. Loop through the array, for each element do
+    2. Search current element in the HashTable, return true if found
+    3. Put current element in the HashTable
+    4. If the size of the HashTable is larger than kk, remove the oldest item.
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+const containsNearbyDuplicate = (nums, k) => {
+	const set = new Set();
+	for (let i = 0; i < nums.length; i++) {
+		if (set.has(nums[i])) return true;
+
+		set.add(nums[i]);
+
+		if (set.size > k) {
+			set.delete(nums[i - k]);
+		}
+	}
+
+	return false;
+};
+```
+
+### 1189. Maximum Number of Balloons
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+
+const maxNumberOfBalloons = text => {
+	const map = {};
+	let balloons = 0;
+
+	for (const letter of text) {
+		map[letter] = 1 + map[letter] || 1;
+	}
+
+	while (true) {
+		if (map.b && map.a && map.l >= 2 && map.o >= 2 && map.n) {
+			balloons += 1;
+			map.b -= 1;
+			map.a -= 1;
+			map.l -= 2;
+			map.o -= 2;
+			map.n -= 1;
+		} else return balloons;
+	}
+
+	return 0;
+};
+```
