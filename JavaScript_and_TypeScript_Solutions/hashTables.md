@@ -890,6 +890,8 @@ const arrayRankTransform = arr => {
 
 ### 219. Contains Duplicate II
 
+#### Sliding Window Algorithm
+
     1. Loop through the array, for each element do
     2. Search current element in the HashTable, return true if found
     3. Put current element in the HashTable
@@ -940,5 +942,51 @@ const maxNumberOfBalloons = text => {
 	}
 
 	return 0;
+};
+```
+
+### 2085. Count Common Words With One Occurrence
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+const countWords = (words1, words2) => {
+	const map1 = {};
+	const map2 = {};
+	let result = 0;
+
+	for (const word of words1) {
+		map1[word] = 1 + (map1[word] || 0);
+	}
+
+	for (const word of words2) {
+		map2[word] = 1 + (map2[word] || 0);
+	}
+
+	for (const [key, values] of Object.entries(map1)) {
+		if (values === 1 && map1[key] === map2[key]) {
+			result++;
+		}
+	}
+
+	return result;
+};
+```
+
+### 1876. Substrings of Size Three with Distinct Characters
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+const countGoodSubstrings = s => {
+	const substrings = [];
+	for (let i = 0; i < s.length; i++) {
+		const set = new Set([s[i], s[i + 1], s[i + 2]]);
+		if (s[i] && s[i + 1] && s[i + 2] && set.size === 3) {
+			substrings.push(`${s[i]}${s[i + 1]}${s[i + 2]}`);
+		}
+	}
+
+	return substrings.length;
 };
 ```
