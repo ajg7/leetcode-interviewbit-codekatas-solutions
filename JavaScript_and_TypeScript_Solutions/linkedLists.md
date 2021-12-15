@@ -1,10 +1,31 @@
 ## Linked Lists
 
+### 1290. Convert Binary Number in a Linked List to Integer
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+
+const getDecimalValue = head => {
+	let binary = "";
+
+	while (head) {
+		binary += head.val;
+		head = head.next;
+	}
+
+	return parseInt(binary, 2);
+};
+```
+
 ### 21. Merge Two Sorted Lists
 
 ```javascript
+// Time-Complexity: O(n + m)
+// Space-Complexity: O()
+
 const mergeTwoLists = (l1, l2) => {
-	const dummy = new ListNode(NaN);
+	const dummy = new ListNode();
 	let curr = dummy;
 
 	while (l1 && l2) {
@@ -146,34 +167,20 @@ const hasCycle = (head: ListNode | null): boolean => {
 };
 ```
 
-### 21. Merge Two Sorted Lists
-
 ```javascript
-const mergeTwoLists = (l1, l2) => {
-	let dummyhead = new ListNode();
-	let curr = dummyhead;
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
 
-	while (l1 && l2) {
-		if (l1.val < l2.val) {
-			curr.next = l1;
-			l1 = l1.next;
-		} else {
-			curr.next = l2;
-			l2 = l2.next;
-		}
-		curr = curr.next;
+const hasCycle = head => {
+	let hare = head;
+	let tortoise = head;
+
+	while (hare && hare.next) {
+		hare = hare.next.next;
+		tortoise = tortoise.next;
+		if (hare === tortoise) return true;
 	}
-	while (l1) {
-		curr.next = l1;
-		l1 = l1.next;
-		curr = curr.next;
-	}
-	while (l2) {
-		curr.next = l2;
-		l2 = l2.next;
-		curr = curr.next;
-	}
-	return dummyhead.next;
+	return false;
 };
 ```
 
@@ -181,6 +188,9 @@ const mergeTwoLists = (l1, l2) => {
 
 ```javascript
 // Stack Solution
+
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
 
 const isPalindrome = head => {
 	const stack = [];
@@ -378,17 +388,36 @@ const removeElements = (head: ListNode | null, val: number): ListNode | null => 
 ### 206. Reverse Linked List
 
 ```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+
 const reverseList = head => {
-	let curr = head;
 	let prev = null;
-	let nextTemp = null;
+	let curr = head;
 
 	while (curr) {
-		nextTemp = curr.next;
+		let tmp = curr.next;
 		curr.next = prev;
 		prev = curr;
-		curr = nextTemp;
+		curr = tmp;
 	}
+
+	return prev;
+};
+```
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+
+const reverseList = head => {
+	if (!head || !head.next) {
+		return head;
+	}
+
+	let prev = reverseList(head.next);
+	head.next.next = head;
+	head.next = null;
 	return prev;
 };
 ```
@@ -405,6 +434,8 @@ const deleteNode = node => {
 ### 876. Middle of the Linked List
 
 ```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
 const middleNode = head => {
 	let fast = head;
 	let slow = head;
@@ -441,5 +472,132 @@ const getDecimalValue = head => {
 		head = head.next;
 	}
 	return parseInt(result.join(""), 2);
+};
+```
+
+### 25. Reverse Nodes in k-Group
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+
+const reverseKGroup = (head, k) => {
+	let dummy = new ListNode();
+	let groupHead = head;
+	let groupTail = head;
+	let prevGroup = dummy;
+
+	outer: while (groupTail) {
+		for (let i = 0; i < k; i++) {
+			if (!groupTail) break outer;
+			groupTail = groupTail.next;
+		}
+
+		const reversedHead = reverseList(groupHead, groupTail);
+
+		prevGroup.next = reversedHead;
+
+		groupHead.next = groupTail;
+		prevGroup = groupHead;
+		groupHead = groupTail;
+	}
+
+	return dummy.next;
+};
+
+const reverseList = (start, end) => {
+	let curr = start;
+	let prev = null;
+	let next = curr;
+
+	while (curr !== end) {
+		next = curr.next;
+		curr.next = prev;
+		prev = curr;
+		curr = next;
+	}
+
+	return prev;
+};
+```
+
+### 1171. Remove Zero Sum Consecutive Nodes from Linked List
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(n)
+
+const removeZeroSumSublists = head => {
+	let curr = head;
+	let sum = 0;
+	let dummy = new ListNode();
+	dummy.next = head;
+	const map = { 0: dummy };
+
+	while (curr) {
+		sum += curr.val;
+		if (map[sum]) {
+			const node = map[sum];
+
+			let runner = node.next;
+			let runnerSum = sum;
+
+			while (runner !== curr) {
+				runnerSum += runner.val;
+				map[runnerSum] = undefined;
+				runner = runner.next;
+			}
+
+			node.next = curr.next;
+		} else {
+			map[sum] = curr;
+		}
+
+		curr = curr.next;
+	}
+
+	return dummy.next;
+};
+```
+
+### 1474. Delete N Nodes After M Nodes of a Linked List
+
+```javascript
+// Time-Complexity: O(n)
+// Space-Complexity: O(1)
+const deleteNodes = (head, m, n) => {
+	let curr = head;
+	let prev = null;
+
+	outer: while (curr && curr.next) {
+		for (let i = 1; i < m; i++) {
+			curr = curr?.next;
+			if (!curr) {
+				break;
+			}
+		}
+
+		if (!curr) {
+			break;
+		} else {
+			prev = curr;
+		}
+
+		for (let j = 0; j < n; j++) {
+			curr = curr?.next;
+			if (!curr) {
+				break;
+			}
+		}
+
+		prev.next = curr?.next ?? null;
+		if (curr?.next) {
+			curr = curr.next;
+		} else {
+			break outer;
+		}
+	}
+
+	return head;
 };
 ```

@@ -895,7 +895,7 @@ const arrayRankTransform = arr => {
     1. Loop through the array, for each element do
     2. Search current element in the HashTable, return true if found
     3. Put current element in the HashTable
-    4. If the size of the HashTable is larger than kk, remove the oldest item.
+    4. If the size of the HashTable is larger than k, remove the oldest item.
 
 ```javascript
 // Time-Complexity: O(n)

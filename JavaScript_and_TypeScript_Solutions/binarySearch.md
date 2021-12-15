@@ -120,6 +120,8 @@ const nextGreatestLetter = (letters: string[], target: string): string => {
 ### 704. Binary Search
 
 ```typescript
+// Time-Complexity: O(log n)
+// Space-Complexity: O(1)
 const search = (nums: number[], target: number): number => {
 	let left: number = 0;
 	let right: number = nums.length;
